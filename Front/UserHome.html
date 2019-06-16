@@ -16,12 +16,100 @@
   <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
   <link rel="stylesheet" href="assets/puritym/css/style.css">
   <link rel="stylesheet" href="assets/mobirise/css/mbr-additional.css" type="text/css">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+  <style>
+    * {
+  box-sizing: border-box;
+}
+
+/* Create two equal columns that floats next to each other */
+.column1 {
+  float: left;
+  width: 30%;
+  padding: 50px;
+  height: 700px; /* Should be removed. Only for demonstration */
+}
+
+.column2 {
+  float: left;
+  width: 70%;
+  padding: 50px;
+  height: 700px; /* Should be removed. Only for demonstration */
+}
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.Middle-Search{
+    padding-top: 20px;
+    width : 60px;
+    font-size: 25px;
+}
+.col2-Title{
+
+  padding-top: 20px;
+  width : 600px;
+  font-size: 25px;
+
+}
+
+.Search-Title{
+
+  font-size: 20px;
+}
+.search {
+  width: 100%;
+  position: relative;
+  display: flex;
+}
+input[type=text] {
+  padding: 6px;
+  margin-top: 0px;
+  font-size: 17px;
+  border: none;
+  width :260px;
+}
+
+.col-search button {
+  float:right ;
+  padding: 6px 10px;
+
   
+  background: #ddd;
+  font-size: 17px;
+  border: none;
+  cursor: pointer;
+}
+.col2-Search button{
+
+ 
+  padding: 6px 10px;
+  background: #ddd;
+  font-size: 17px;
+  border: none;
+  cursor: pointer;
+
+
+}
+.col2-Search{
+  padding-top: 27px;
+}
+
+
+
+  </style>
   
   
 </head>
 <body>
-  <nav class="navbar navbar-light mbr-navbar navbar-fixed-top" id="ext_menu-f" data-rv-view="16" style="background-color: rgb(12, 54, 128);">
+ <nav class="navbar navbar-light mbr-navbar navbar-fixed-top" id="ext_menu-f" data-rv-view="16" style="background-color: rgb(12, 54, 128);">
     <div class="container">
         <button class="navbar-toggler pull-right hidden-md-up" type="button" data-toggle="collapse" data-target="#exCollapsingNavbar2">
             <div class="hamburger-icon"></div>
@@ -37,7 +125,54 @@
             <ul class="nav navbar-nav pull-xs-right"><li class="nav-item"><a class="nav-link" href="https://mobirise.com">Home</a></li><li class="nav-item"><a class="nav-link" href="https://mobirise.com">About</a></li><li class="nav-item"><a class="nav-link" href="https://mobirise.com">Contact</a></li></ul>
         </div>
     </div>
-</nav>
+ </nav>
+
+<section class="mbr-section mbr-section-full mbr-parallax-background mbr-after-navbar" id="header1-1" data-rv-view="2">
+<div class="Middle">
+    <div class="column1" style="background-color:rgb(232, 235, 235);">
+        <div class ="Middle-Search"> Search</div>
+        <div class ="Search-Title">Organization</div>
+        <div class ="col-search"> 
+            <form action="/action_page.php">
+              <input type="text" placeholder="Search.." name="search">
+              <button type="submit"><i class="fa fa-search"></i></button>
+            </form>  
+        </div>
+         
+        
+        <div class ="Search-Title">Language</div>
+        <div class ="col-search"> 
+            <form action="/action_page.php">
+              <input type="text" placeholder="Search.." name="search">
+              <button type="submit"><i class="fa fa-search"></i></button>
+            </form>  
+        </div>
+        
+        <div class ="Search-Title">Repository url</div>
+        <div class ="col-search"> 
+            <form action="/action_page.php">
+              <input type="text" placeholder="Search.." name="search">
+              <button type="submit"><i class="fa fa-search"></i></button>
+            </form>  
+        </div>
+       
+    </div>
+    <div class="column2" style="background-color:rgb(240, 247, 248);">
+           <div class="col2-Title"> Search Your Repositiry for better Analyzation</div>
+           <div class = "col2-Search">
+            <form action="/action_page.php">
+            <input type="text" placeholder="Search.." name="search">
+            <button type="submit"><i class="fa fa-search"></i></button>
+          </form>    
+        </div>
+    </div>
+
+</div>
+  
+  
+
+
+</section>
 
 
   <script src="assets/web/assets/jquery/jquery.min.js"></script>
