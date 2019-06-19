@@ -2,10 +2,12 @@ import os
 import requests
 
 
-url= 'https://raw.githubusercontent.com/laveesha/Data-Minin-App/10d33bfb6dbe15579946459b7861dad56c681910/ShinyApp/www/google-analytics.js'
+url= 'https://raw.githubusercontent.com/Madlhawa/Web-Scrape/db7f94b9936be83a2782ac30c1c48e375238ca8c/LankaTronics/LankaTronics/middlewares.py'
 
 r= requests.get(url)
 
+f = open("F:/ab.py" ,"w")
+f.write('r.content')
 print(r.content)
 
     
