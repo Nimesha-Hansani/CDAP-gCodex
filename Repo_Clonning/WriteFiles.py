@@ -1,4 +1,3 @@
-
 from github  import Github
 import datetime
 
@@ -45,6 +44,7 @@ def Avoid_Files(filePath ,rpName ,bUrl,ck):
 
 branches=repository.get_branches()
 for br in branches:
+    Branch=br.name
     headCommit = br.commit.sha
     print(headCommit)
 
@@ -64,7 +64,6 @@ for br in branches:
         commitMonth = commitDateTime.month
 
         #Get trees for each commit
-
         trees = repository.get_git_tree(brCom.sha).tree
         commitKey=brCom.sha
         for tr in trees:
@@ -77,8 +76,8 @@ for br in branches:
                   if(file_content.type == "dir"):
                     
                      dirPath= 'D:/SLIIT EDU/Test'
-                     folderPath=(dirPath+'/'+TimeStampStr+'/'+file_content.path)
-                     parentFolderPath=(dirPath+'/'+TimeStampStr+'/')
+                     folderPath=(dirPath+'/'+Branch+'/'+TimeStampStr+'/'+file_content.path)
+                     parentFolderPath=(dirPath+'/'+Branch+'/'+TimeStampStr+'/')
                      if (os.path.exists(dirPath)):
                         os.makedirs(folderPath)
                        
@@ -93,9 +92,7 @@ for br in branches:
                         r = requests.get(rawPath)
                         print(parentFolderPath+file_content.path)
                         f = open(parentFolderPath+file_content.path ,"w")
-                        f.write(r.content)
-                        print(r.content)
-                        f.close()
+                        
                        
                         
          
