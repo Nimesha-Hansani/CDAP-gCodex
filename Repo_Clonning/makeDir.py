@@ -1,13 +1,13 @@
-import os
-import requests
+import re
 
-
-url= 'https://raw.githubusercontent.com/Madlhawa/Web-Scrape/db7f94b9936be83a2782ac30c1c48e375238ca8c/LankaTronics/LankaTronics/middlewares.py'
-
-r= requests.get(url)
-
-f = open("F:/ab.py" ,"w")
-f.write('r.content')
-print(r.content)
-
-    
+test_string = "Geeksforgeeks,    is best @# Computer Science Portal.!!!"
+  
+# printing original string 
+print ("The original string is : " +  test_string) 
+  
+# using regex( findall() ) 
+# to extract words from string 
+res = re.findall(r'\w+', test_string) 
+  
+# printing result 
+print ("The list of words is : " +  str(res)) 
