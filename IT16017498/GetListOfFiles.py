@@ -23,7 +23,7 @@ def CalculateCognitiveWeight(line):
 def countIdentifiers(line):
     wordList = []
     commonkeywords=['for' ,'do','while','if','else','elseif','elif','switch','case','continue','pass','try','catch',
-                   'continue','int','double','float','finally' ,'from','return','null','=']
+                   'continue','int','double','float','finally' ,'from','return','null']
     keywords1 = keyword.kwlist
     keywordsJava= ['import' ,'from','abstract','boolean','break','byte','case','catch','char','class','continue','default','final','private',
                   'protected','throws','void']

@@ -1,6 +1,11 @@
 from github  import Github
 # using username and password
-g = Github("Nimesha-Hansani", "19950525hansani")
+
+g = Github("nimeshaamaraa@gmail.com", "19950525hansani")
+
+
+
+  
 user =g.get_user()
 repository=g.get_repo("laveesha/Data-Minin-App")
 branches=repository.get_branches()
