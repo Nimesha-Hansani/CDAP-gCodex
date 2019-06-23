@@ -4,10 +4,10 @@ import requests
 import os
 
 # User Authentocation 
-g = Github("Nimesha-Hansani", "19950525hansani")
+g = Github("dakhz", "dPYAREE@18")
 user =g.get_user()
-repository=g.get_repo("Madlhawa/Web-Scrape")
-repoName="Madlhawa/Web-Scrape"
+repository=g.get_repo("4CBookClub")
+repoName="4CBookClub"
 baseUrl='https://raw.githubusercontent.com/'
 #Functions
 #Get all the repository comments
@@ -59,7 +59,7 @@ for br in branches:
                    
                   if(file_content.type == "dir"):
                     
-                     dirPath= 'D:/SLIIT EDU/Test'
+                     dirPath= 'F:/4th year Research/1-The Project/50%/Test'
                      folderPath=(dirPath+'/'+Branch+'/'+TimeStampStr+'/'+file_content.path)
                      parentFolderPath=(dirPath+'/'+Branch+'/'+TimeStampStr+'/')
                      if (os.path.exists(dirPath)):
