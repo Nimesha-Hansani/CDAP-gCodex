@@ -5,6 +5,7 @@ import re
 import keyword
 from pymongo import MongoClient
 from pymongo import InsertOne
+import datetime
 
 #DB Connection to the cognitive value collection
 
@@ -112,9 +113,12 @@ def CalculateCognitiveMetricValue(filePath):
         for line in filecontent:
             CalculateCognitiveWeight(line)
             TotalCognitiveWeight = TotalCognitiveWeight + CalculateCognitiveWeight(line)
-            LinesOfCode = LinesOfCode + 1
+            if line.strip():
+               LinesOfCode = LinesOfCode + 1
     
     FinalValue = (TotalCognitiveWeight + TotalDistinctIdentifiers + TotalDistinctOperators)/ LinesOfCode
+    print("LinesOfCode"+ str(LinesOfCode))
+    
     return FinalValue
 
 #Function for Calculate Identifier
@@ -149,14 +153,44 @@ for file in os.listdir(folderPath):
 
    #Insert a Document
    mycol.insert_one({"Branch":BranchName })
-                 
+
+   if os.path.isdir(folderPath+'/'+BranchName):
+      commitFoldersPath = folderPath+'/'+BranchName 
+      for file in  os.listdir(commitFoldersPath):
+          contentFolderPath =commitFoldersPath+'/'+file
+          commitdatetime =str(file).split(' ') 
+        
+          mycol.update_one({"Branch": BranchName},
+                           {'$push':{"Commits":
+                                    {"Commit Date":commitdatetime[0],
+                                     "Commit Time":commitdatetime[1]}}
+                                    }
+                     )    
+
+          
+          for file in glob.iglob(contentFolderPath+"/**",recursive=True):
+            testingPath = file.replace("\\","/")
+            
+
+            if os.path.isfile(testingPath):
+         
+               MetricValue = CalculateCognitiveMetricValue(testingPath)
+               file_extension =  os.path.splitext(testingPath)
+               file_Type =file_extension[1]
+               
+               mycol.update({"Branch":BranchName,
+                             "Commits":{'$elemMatch':{"Commit Date":commitdatetime[0] ,
+                                                      "Commit Time":commitdatetime[1]}}},
+                                                      {'$push':{"Commits.$.Contents":
+                                                               {"Cognitive Metric Value":MetricValue,
+                                                                "File Extension":file_extension[1],
+                                                                "Folder Path"   :testingPath
+                                                               }
+
+                                                }}
 
 
-
-
-
-
-
+               )          
 
 
 
