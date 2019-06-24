@@ -4,7 +4,7 @@ import keyword
 
 
 
-filePath="D:/CDAP/PyGitHub/ARIMA.py"
+filePath="D:/SLIIT EDU/Test/EC2-solr-rundeck/2018-11-21 07-20-54/buyabans/buyabans/pipelines.py"
 def CalculateCognitiveWeight(line):
     
     cognitiveWeight = 0
@@ -20,23 +20,28 @@ def CalculateCognitiveWeight(line):
 
     return cognitiveWeight
 
-def countIdentifiers(line):
-    wordList = []
-    commonkeywords=['for' ,'do','while','if','else','elseif','elif','switch','case','continue','pass','try','catch',
-                   'continue','int','double','float','finally' ,'from','return','null']
-    keywords1 = keyword.kwlist
-    keywordsJava= ['import' ,'from','abstract','boolean','break','byte','case','catch','char','class','continue','default','final','private',
-                  'protected','throws','void']
-    #keywordJavaScript = []
-    #keywordC=[]
-    res = re.findall(r'[a-zA-Z]+', line)
-    for w in res:
-        if (w not in keywords1) and (w not in keywordsJava) and (w not in commonkeywords):
-           wordList.append(w)
- 
-           
-    Identifiers = set (wordList)
-    return len(Identifiers)
+def countIdentifiers(filePath):
+    with open(filePath, 'r') as filehandle:
+        
+        filecontent = filehandle.readlines()
+        for line in filecontent:
+
+            wordList = []
+            commonkeywords=['for' ,'do','while','if','else','elseif','elif','switch','case','continue','pass','try','catch',
+                        'continue','int','double','float','finally' ,'from','return','null']
+            keywords1 = keyword.kwlist
+            keywordsJava= ['import' ,'from','abstract','boolean','break','byte','case','catch','char','class','continue','default','final','private',
+                        'protected','throws','void']
+            #keywordJavaScript = []
+            #keywordC=[]
+            res = re.findall(r'[a-zA-Z]+', line)
+            for w in res:
+                if (w not in keywords1) and (w not in keywordsJava) and (w not in commonkeywords):
+                    wordList.append(w)
+        
+            
+        Identifiers = set (wordList)
+        return len(Identifiers)
 
 def CalculateArithmeticOperartors(line):
     c1 = 0
@@ -104,13 +109,15 @@ with open(filePath, 'r') as filehandle:
     TotalDistinctIdentifiers = 0
     TotalCognitiveWeight = 0
     filecontent = filehandle.readlines()
+    
     WordContent = str(filecontent)
     SplittedWord = WordContent.split(' ')
     TotalDistinctOperators =CalculateArithmeticOperartors(SplittedWord) + CalculateLogicalOperators(SplittedWord)
+    TotalDistinctIdentifiers =countIdentifiers(filePath)
     print("Total Operators " + str(TotalDistinctOperators))
     for line in filecontent:
         LinesOfCode =LinesOfCode + 1
-        TotalDistinctIdentifiers = TotalDistinctIdentifiers + countIdentifiers(line)
+        
 
         CalculateCognitiveWeight(line)
         TotalCognitiveWeight = TotalCognitiveWeight + CalculateCognitiveWeight(line)

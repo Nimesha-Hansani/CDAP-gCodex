@@ -1,11 +1,8 @@
 from github  import Github
 # using username and password
 
-g = Github("nimeshaamaraa@gmail.com", "19950525hansani")
+g = Github("nimeshaamarasingha@gmail.com", "19950525hansani")
 
-
-
-  
 user =g.get_user()
 repository=g.get_repo("laveesha/Data-Minin-App")
 branches=repository.get_branches()
@@ -13,7 +10,7 @@ for br in branches:
     print(br)
     headCommit=br.commit.sha
     
-    print("This is the head commit of a branch : " +headCommit)
+    print("This is  branch commit : " +headCommit)
     commits = repository.get_commits(headCommit)
     
     for com in commits:
@@ -24,16 +21,19 @@ for br in branches:
       
       
       tree=repository.get_git_tree(com.sha).tree
+    
       for tr in tree:
         
         try:
+          print("Tree of the Commit :"+ tr.sha + "Path :" + tr.path)
           treeContent=repository.get_contents(tr.path)
+          print(treeContent)
           while len(treeContent)> 1:
-            file_content=treeContent.pop(0)
-            print(file_content)
-            if file_content.type =="dir":
-               treeContent.extend(repository.get_contents(file_content.path))
-            else :
+           file_content=treeContent.pop(0)
+           print(file_content)
+           if file_content.type =="dir":
+            treeContent.extend(repository.get_contents(file_content.path))
+           else :
                 print(file_content.path)
 
         except:
