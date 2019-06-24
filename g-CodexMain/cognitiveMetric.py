@@ -7,6 +7,9 @@ from pymongo import MongoClient
 from pymongo import InsertOne
 import datetime
 
+
+
+
 #DB Connection to the cognitive value collection
 
 myclient = MongoClient('localhost',27017)
