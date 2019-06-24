@@ -1,8 +1,6 @@
-commentSymbol = '#' or '//' 
-
+commentSymbol = ['//','#','--','<!-- ','!','%',]
 import sys
 import os, os.path
-
 
 
 currentDir = "F:/4th year Research/1-The Project/50%/CDAP-gCodex/Repo_Clonning/WriteFiles.py"
@@ -40,7 +38,7 @@ for fileToCheck in filesToCheck:
             if not lineWithoutWhitespace:
                 totalBlankLineCount += 1
                 fileBlankLineCount += 1
-            elif lineWithoutWhitespace.startswith(commentSymbol):
+            elif lineWithoutWhitespace.startswith(tuple(commentSymbol)):
                 totalCommentLineCount += 1
                 fileCommentLineCount += 1
 
