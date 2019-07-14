@@ -122,7 +122,7 @@ def CalculateCognitiveMetricValue(filePath):
     FinalValue = (TotalCognitiveWeight + TotalDistinctIdentifiers + TotalDistinctOperators)/ LinesOfCode
     print("LinesOfCode"+ str(LinesOfCode))
     
-    return FinalValue
+    return [FinalValue ,TotalCognitiveWeight ,TotalDistinctIdentifiers , TotalDistinctIdentifiers ]
 
 #Function for Calculate Identifier
 def countIdentifiers(filePath):
@@ -162,18 +162,21 @@ for file in os.listdir(folderPath):
       for file in  os.listdir(commitFoldersPath):
           contentFolderPath =commitFoldersPath+'/'+file
           commitdatetime =str(file).split(' ') 
-        
+          print(contentFolderPath)
           mycol.update_one({"Branch": BranchName},
-                           {'$push':{"Commits":
-                                    {"Commit Date":commitdatetime[0],
-                                     "Commit Time":commitdatetime[1]}}
-                                    }
-                     )    
+                        {'$push':{"Commits":
+                                 {"Commit Date":commitdatetime[0],
+                                  "Commit Time":commitdatetime[1]}}
+                                }
+                     )   
 
           
-          for file in glob.iglob(contentFolderPath+"/**",recursive=True):
-            testingPath = file.replace("\\","/")
+          for file in glob.iglob(contentFolderPath+ "/**",recursive=True):
             
+            testingPath = file.replace("\\","/")
+          
+            childPath=testingPath.split(contentFolderPath)
+                   
 
             if os.path.isfile(testingPath):
          
@@ -182,15 +185,18 @@ for file in os.listdir(folderPath):
                file_Type =file_extension[1]
                
                mycol.update({"Branch":BranchName,
-                             "Commits":{'$elemMatch':{"Commit Date":commitdatetime[0] ,
-                                                      "Commit Time":commitdatetime[1]}}},
-                                                      {'$push':{"Commits.$.Contents":
-                                                               {"Cognitive Metric Value":MetricValue,
-                                                                "File Extension":file_extension[1],
-                                                                "Folder Path"   :testingPath
+                           "Commits":{'$elemMatch':{"Commit Date":commitdatetime[0] ,
+                                                    "Commit Time":commitdatetime[1]}}},
+                                                     {'$push':{"Commits.$.Contents":
+                                                             { "Cognitive Metric Value":MetricValue[0],
+                                                               "Cogitive Weight"   :MetricValue[1],
+                                                               "Distinct Identifiers" : MetricValue[2],
+                                                               "Distinct Operators": MetricValue[3],
+                                                               "File Extension":file_extension[1],
+                                                               "Folder Path"   :childPath[1]
                                                                }
 
-                                                }}
+                                             }}
 
 
                )          

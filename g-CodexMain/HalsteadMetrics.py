@@ -122,7 +122,7 @@ for file in os.listdir(folderPath):
           
           for file in glob.iglob(contentFolderPath+"/**",recursive=True):
             testingPath = file.replace("\\","/")
-            
+            childPath=testingPath.split(contentFolderPath)
 
             if os.path.isfile(testingPath):
          
@@ -142,7 +142,7 @@ for file in os.listdir(folderPath):
                                                                 "Program Effort":MetricValue[4],
                                                                 "Programming Time":MetricValue[5],
                                                                 "File Extension":file_extension[1],
-                                                                "Folder Path"   :testingPath
+                                                                "Folder Path"   :childPath[1]
                                                                }
 
                                                 }}

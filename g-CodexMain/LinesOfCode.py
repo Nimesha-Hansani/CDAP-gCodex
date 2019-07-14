@@ -76,7 +76,7 @@ for file in os.listdir(folderPath):
           
           for file in glob.iglob(contentFolderPath+"/**",recursive=True):
             testingPath = file.replace("\\","/")
-            
+            childPath=testingPath.split(contentFolderPath)
 
             if os.path.isfile(testingPath):
          
@@ -93,7 +93,7 @@ for file in os.listdir(folderPath):
                                                                 "Comment Lines" : MetricValue[2],
                                                                 "File Lines of Code":MetricValue[0],
                                                                 "File Extension":file_extension[1],
-                                                                "Folder Path"   :testingPath
+                                                                "Folder Path"   :childPath[1]
                                                                }
 
                                                 }}
