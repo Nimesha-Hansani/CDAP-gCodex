@@ -7,6 +7,9 @@ import {
 } from 'reactstrap';
 
 export default function home() {
+   
+
+
     return (
         <div>
          <Navbar class="navBackground" color="info" light expand="md">

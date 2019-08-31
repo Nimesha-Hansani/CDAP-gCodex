@@ -2,8 +2,10 @@ from github  import Github
 # using username and password
 
 g = Github("nimeshaamarasingha@gmail.com", "19950525hansani")
-
+print(g)
 user =g.get_user()
+print(user)
+print(g.get_repos())
 repository=g.get_repo("laveesha/Data-Minin-App")
 branches=repository.get_branches()
 for br in branches:

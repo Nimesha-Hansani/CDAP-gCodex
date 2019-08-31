@@ -10,14 +10,14 @@ user =g.get_user()
 
 
 #Repository Name
-repository=g.get_repo("laveesha/Data-Minin-App")
-repoName="laveesha/Data-Minin-App"
+repository=g.get_repo("Nimesha-Hansani/CDAP-gCodex")
+repoName="Nimesha-Hansani/CDAP-gCodex"
 baseUrl='https://raw.githubusercontent.com/'
 
 #Local Path which repository contents going to be stored
 
 
-LocalDirPath="D:/Test2"
+LocalDirPath="D:/Test3"
 
 
 #Filter required files    

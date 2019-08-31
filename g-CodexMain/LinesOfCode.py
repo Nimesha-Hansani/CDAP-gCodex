@@ -16,7 +16,7 @@ mydb = myclient["gCodexDB"]
 mycol =mydb["LinesOfCode"]
 
 #Folder path from Local Machine
-folderPath="D:/SLIIT EDU/Test"
+folderPath="D:/Test3"
 
 #Calculate Metric
 commentSymbol = ['//','#','--','<!-- ','!','%',]

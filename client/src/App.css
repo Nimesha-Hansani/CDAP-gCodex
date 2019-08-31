@@ -49,3 +49,38 @@ img.card-img-top {
     
  
 }
+img.avatar{
+    width: 50px;
+    height: 50px;
+    vertical-align: middle;
+    border-radius: 50%;
+}
+
+h3.SearchText {
+
+    margin-left: 30px;
+    margin-top: 3px;
+    font-style: oblique;
+    color: crimson;
+}
+div.form-group{
+
+  margin-bottom: 10px;
+}
+input#project.form-control{
+
+    width: 500px;
+}
+div#btn.row{
+
+    padding-right: 10px;
+    padding-left: 20px;
+    padding-top: 20px;
+}
+button#DB.btn.btn-outline-info{
+
+    width: 180px;
+    height: 90px;
+    font-weight: 500;
+}
+
