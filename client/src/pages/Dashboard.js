@@ -35,9 +35,9 @@ export default class Dashboard extends Component {
                 <Row id ="btn">
                 <Button id="DB"outline color="info">Repo Structure</Button>
                 <Button id="DB"outline color="info">Complexity</Button>
-                <Button id="DB"outline color="info">Cognitvity</Button>
+                <Button id="DB"outline color="info">Comprehensability</Button>
                 <Button id="DB"outline color="info">Bugs</Button>
-                <Button id="DB"outline color="info">Other</Button>
+                <Button id="DB"outline color="info">Prediction</Button>
                 </Row>
                 </Col>
                 <Col lg ={10}>

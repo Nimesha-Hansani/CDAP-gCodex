@@ -32,20 +32,22 @@ export default function home() {
          </Navbar>
          
 
-        <Row>
+        <Container>
+        <Row style={{marginTop: '70px', marginBottom: '60px'}}>
             <Col lg={6}>
-            <Card style={{marginTop: '40px',marginLeft : '20px'}} >
-                <CardImg top width="90%" src="https://github.githubassets.com/images/modules/logos_page/GitHub-Logo.png" alt="Card image cap" />
+            <Card  >
+                <CardImg top width="90%" src="https://github.githubassets.com/images/modules/logos_page/GitHub-Logo.png" alt=""/>
                 <CardBody>
-                <CardTitle style={{color:'green'}}>Sign in to gCodex Account with your Git Account Credintieals</CardTitle>
-                <FormGroup>
-                    <Label for="exampleEmail">Username</Label>
-                    <Input type="email" name="email" id="exampleEmail" placeholder="Email or Username of your Git Account" />
-                </FormGroup>
-                <FormGroup>
-                    <Label for="examplePassword">Password</Label>
-                    <Input type="password" name="password" id="examplePassword" placeholder="Password" />
-                </FormGroup>
+                    <CardTitle style={{color:'green'}}>Sign in to gCodex Account with your Git Account Credintieals</CardTitle>
+                    <FormGroup>
+                        <Label for="exampleEmail">Username</Label>
+                        <Input type="email" name="email" id="exampleEmail" placeholder="Email or Username of your Git Account" />
+                    </FormGroup>
+                    <FormGroup>
+                        <Label for="examplePassword">Password</Label>
+                        <Input type="password" name="password" id="examplePassword" placeholder="Password" />
+                    </FormGroup>
+                    
                     <Button block color ="success" size="lg" href="/usermenu">Log in with Github</Button>
 
                 </CardBody>
@@ -53,7 +55,7 @@ export default function home() {
 
             </Col>
             <Col lg={6}>
-            <div class ="MainPageHitTitle">
+            <div>
                 
                 <Jumbotron>
                 <h1 className="display-3">Analyze the complexity of your code right away</h1>
@@ -64,15 +66,18 @@ export default function home() {
             </Col>
             
         </Row>
-        <Row>
-          <Col> <img id="animateimg" src = "https://gocode.academy/wp-content/uploads/2018/06/javascript-logo.png " alt ="" /> </Col>
-          <Col> <img id="animateimg" src = "https://www.python.org/static/community_logos/python-logo-master-v3-TM.png" alt ="" /></Col>
-          <Col> <img id="animateimg" src = "https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/PHP-logo.svg/1280px-PHP-logo.svg.png" alt ="" /></Col>
-          <Col> <img id="animateimg" src = "https://www.cbronline.com/wp-content/uploads/2016/07/C.png" alt ="" /></Col>
-          <Col> <img id="animateimg" src = "https://4.bp.blogspot.com/-gTiw6OELPy0/XJorCue1joI/AAAAAAAACkA/mII85pOuZKYLQlFx6wjkxgkJYrULjv4hQCLcBGAs/s1600/java.png" alt ="" /></Col>
-         </Row>
+       
 
-            
+         </Container>
+
+        <Row>
+          <Col> <img id="animateimg" src = "https://gocode.academy/wp-content/uploads/2018/06/javascript-logo.png " alt ="" style={{width: 'auto'}} /> </Col>
+          <Col> <img id="animateimg" src = "https://www.python.org/static/community_logos/python-logo-master-v3-TM.png" alt =""  style={{width: 'auto'}}/></Col>
+          <Col> <img id="animateimg" src = "https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/PHP-logo.svg/1280px-PHP-logo.svg.png" alt ="" style={{width: 'auto'}}/></Col>
+          <Col> <img id="animateimg" src = "https://www.cbronline.com/wp-content/uploads/2016/07/C.png" alt ="" style={{width: 'auto'}}/></Col>
+          <Col> <img id="animateimg" src = "https://4.bp.blogspot.com/-gTiw6OELPy0/XJorCue1joI/AAAAAAAACkA/mII85pOuZKYLQlFx6wjkxgkJYrULjv4hQCLcBGAs/s1600/java.png" alt ="" style={{width: 'auto'}}/></Col>
+        </Row>
+
         </div>
     )
 }

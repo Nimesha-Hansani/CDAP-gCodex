@@ -43,11 +43,10 @@ img.card-img-top {
 
     width :200px;
     height :50px;
+    margin-top: 20px;
     padding-top: 10px;
-    padding-right: 0px;
-    
-    
- 
+    padding-left: 20px;
+
 }
 img.avatar{
     width: 50px;
@@ -58,7 +57,7 @@ img.avatar{
 
 h3.SearchText {
 
-    margin-left: 30px;
+    margin-left: 0px;
     margin-top: 3px;
     font-style: oblique;
     color: crimson;
@@ -84,3 +83,20 @@ button#DB.btn.btn-outline-info{
     font-weight: 500;
 }
 
+
+    
+
+.scrollbar-cyan::-webkit-scrollbar {
+    width: 12px;
+}
+    
+.scrollbar-cyan::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: #00bcd4;
+}
+    
+.example-1 {
+    position: relative;
+    overflow-y: scroll;
+    height: 300px;
+}

@@ -10,10 +10,10 @@ user =g.get_user()
 
 
 #Repository Name
-repository=g.get_repo("Nimesha-Hansani/CDAP-gCodex")
-repoName="Nimesha-Hansani/CDAP-gCodex"
+repository=g.get_repo("Nimesha-Hansani/BMS_harasara")
+repoName="Nimesha-Hansani/BMS_harasara"
 baseUrl='https://raw.githubusercontent.com/'
-
+print(user)
 #Local Path which repository contents going to be stored
 
 
@@ -77,6 +77,7 @@ for br in branches:
                   if (os.path.exists(CommitsFolderPath)):
                      rawPath = Avoid_Files(treeContent.path,repoName,baseUrl,commitKey)
                      r = requests.get(rawPath)
+                     print(r.content)
                      f = open(CommitsFolderPath+'/'+treeContent.path ,"wb").write(r.content)
                      
                   else:

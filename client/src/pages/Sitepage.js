@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 //import {login} from '../Functions/UserFunctions';
 import { Alert } from 'reactstrap';
+import {connect} from 'react-redux';
+import PropTypes from 'prop-types';
 
 import {login, loadSitePage} from '../actions/actions';
 
@@ -36,22 +38,29 @@ import {
       
       e.preventDefault()
 
-      let user = {  
-         USERNAME : this.state.EnteredUsername,
-         PASSWORD : this.state.EnteredPassword
-      }
-
+      let user = {
+        username: this.state.EnteredUsername,
+        password: this.state.EnteredPassword
+    }
   
 
       login(user).then(res =>{
-          if(res === false){
+          if(res === "False"){ 
             this.setState({login: false});
           }else{
-            // console.log("herer");
-            // loadSitePage(user);
-            this.props.history.push("/usermenu");
+            this.setState({login: true});
+            this.props.loadSitePage().then(res => {
+                this.props.history.push("/usermenu");
+            });
+           
+
+            // 
           }
       }); 
+
+    // this.props.loadSitePage(user);
+    // console.log(this.props.user);
+
     }
 
 
@@ -136,9 +145,17 @@ import {
 
 }
 
-// const mapStateProps = state => ({
-//     data: state.data
-// })
+Sitepage.propTypes = {
+    user: PropTypes.object.isRequired,
+    // history: PropTypes.shape({
+    //     push: PropTypes.func.isRequired
+    // }).isRequired
+  }
+  
 
-export default Sitepage;
+const mapStateToProps = state => ({
+    user: state.user
+});
+
+export default connect(mapStateToProps, {login, loadSitePage})(Sitepage);
 
