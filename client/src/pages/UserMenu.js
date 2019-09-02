@@ -109,8 +109,8 @@ class UserMenu extends Component {
                     <hr className="my-2" />
                     <p>Select or search Repositories for Analyze..</p>
                     
-                    <div style={{padding: '0 30px 0 30px'}}>
-                    <ButtonGroup size="lg">
+                    <div style={{padding: '50px 5px 0 0'}}>
+                    <ButtonGroup size="lg" style={{width:'200px'}}>
                       <Button color="primary">Repo Structure</Button>
                       <Button color="primary">Complexity</Button>
                       <Button color="primary">Comprehension</Button>

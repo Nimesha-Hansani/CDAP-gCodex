@@ -53,6 +53,8 @@ def TraverseHalstead(username ,password,repo):
     # print(repo)
     print("Halstead    "+repo)
     repository=g.get_repo(repo)
+    mycol.insert_one({"Repository":repo})
+
 
     branches=repository.get_branches()
 
@@ -60,7 +62,14 @@ def TraverseHalstead(username ,password,repo):
         
         Branch=br.name
         headCommit=br.commit.sha
-        mycol.insert_one({"Branch":Branch})
+        
+
+        mycol.update_one({"Repository": repo},
+                           {'$push':{"Branches":
+                                    {"Branch":br.name
+                                     }}
+                                    }
+                     )
 
         # print("This is  branch commit : " +headCommit)
         commits = repository.get_commits(headCommit)

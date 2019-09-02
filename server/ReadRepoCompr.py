@@ -54,14 +54,19 @@ def TraverseCompr(username ,password,repo):
     # print(repo)
     print("Com"+repo)
     repository=g.get_repo(repo)
-
+    mycol.insert_one({"Repository":repo})
     branches=repository.get_branches()
-
+    
     for br in branches:
         
         Branch=br.name
         headCommit=br.commit.sha
-        mycol.insert_one({"Branch":Branch})
+        mycol.update_one({"Repository": repo},
+                           {'$push':{"Branches":
+                                    {"Branch":br.name
+                                     }}
+                                    }
+                     )
 
         # print("This is  branch commit : " +headCommit)
         commits = repository.get_commits(headCommit)

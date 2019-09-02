@@ -53,19 +53,27 @@ def LinesOfCode(rawPath):
 
 
 
-def CalculateLinesofCode(BranchName,CommitDate,CommitTime,R,Extension,filePath,Raw):
+def CalculateLinesofCode(Repo,BranchName,CommitDate,CommitTime,R,Extension,filePath,Raw):
     global newCommitDate
     global newCommitTime
  
     if(newCommitDate != CommitDate) or ( newCommitTime!= CommitTime):
 
     
-        mycol.update_one({"Branch": BranchName},
-                           {'$push':{"Commits":
-                                    {"Commit Date":CommitDate,
-                                     "Commit Time":CommitTime}}
-                                    }
-                     )
+        # mycol.update({"Branch": BranchName},
+        #                    {'$push':{"Commits":
+        #                             {"Commit Date":CommitDate,
+        #                              "Commit Time":CommitTime}}
+        #                             }
+        #              )
+        mycol.update({"Repository":Repo,
+                         "Branches":{'$elemMatch':{"Branch":BranchName}}},
+                                    {'$push':{"Branches.$.Commits":
+                                                {"Commit Date":CommitDate ,
+                                                "Commit Time":CommitTime
+                                                }
+                                    }})
+      
         newCommitDate = CommitDate
         newCommitTime = CommitTime
         

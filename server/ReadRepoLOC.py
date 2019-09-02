@@ -52,6 +52,7 @@ def TraverseLOC(username ,password,repo):
     # print(repo)
     print("LOC  "+repo)
     repository=g.get_repo(repo)
+    mycol.insert_one({"Repository":repo})
 
     branches=repository.get_branches()
 
@@ -59,7 +60,15 @@ def TraverseLOC(username ,password,repo):
         
         Branch=br.name
         headCommit=br.commit.sha
-        mycol.insert_one({"Branch":Branch})
+        
+
+        mycol.update_one({"Repository": repo},
+                           {'$push':{"Branches":
+                                    {"Branch":br.name
+                                     }}
+                                    }
+                     )
+        
 
         # print("This is  branch commit : " +headCommit)
         commits = repository.get_commits(headCommit)
@@ -93,7 +102,7 @@ def TraverseLOC(username ,password,repo):
                                 print("Lines Of Code" + rawPath)
                                 ExtFileName = rawPath.split('/')
                                 File_Extension =(ExtFileName[len(ExtFileName)-1]).split('.')
-                                LinesOfCode.CalculateLinesofCode(br.name,Date[0],Date[1],r,File_Extension[1],file_content.path,rawPath)
+                                LinesOfCode.CalculateLinesofCode(repo,br.name,Date[0],Date[1],r,File_Extension[1],file_content.path,rawPath)
                 
                 except:
 
