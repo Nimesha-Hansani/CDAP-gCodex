@@ -1,7 +1,6 @@
 from github  import Github
 import urllib.request
 import requests
-
 import datetime
 import os
 import glob
@@ -16,7 +15,7 @@ import os, os.path
 import LinesOfCode
 
 
-#DB Connection to the cognitive value collection
+#DB Connection to the LinesofCode value collection
 myclient = MongoClient('localhost',27017)
 mydb = myclient["gCodexDB"]
 mycol =mydb["LinesOfCode"]
@@ -51,7 +50,7 @@ def TraverseLOC(username ,password,repo):
     user =g.get_user()
     # print(user.login)
     # print(repo)
-    print(repo)
+    print("LOC  "+repo)
     repository=g.get_repo(repo)
 
     branches=repository.get_branches()
@@ -91,7 +90,7 @@ def TraverseLOC(username ,password,repo):
                             rawPath=Avoid_Files(file_content.path,repoName,baseUrl,commitKey)
                             if(rawPath != None):
                                 r = requests.get(rawPath)
-                                print(rawPath)
+                                print("Lines Of Code" + rawPath)
                                 ExtFileName = rawPath.split('/')
                                 File_Extension =(ExtFileName[len(ExtFileName)-1]).split('.')
                                 LinesOfCode.CalculateLinesofCode(br.name,Date[0],Date[1],r,File_Extension[1],file_content.path,rawPath)
@@ -100,9 +99,8 @@ def TraverseLOC(username ,password,repo):
 
                     pass
     
-
     
-    
+    return    
     
 
     

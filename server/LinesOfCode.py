@@ -68,9 +68,9 @@ def CalculateLinesofCode(BranchName,CommitDate,CommitTime,R,Extension,filePath,R
                      )
         newCommitDate = CommitDate
         newCommitTime = CommitTime
-        print(newCommitDate)
+        
         AttrList = LinesOfCode(Raw)
-        print(AttrList[0])
+    
         mycol.update({"Branch":BranchName,
                              "Commits":{'$elemMatch':{"Commit Date":CommitDate ,
                                                       "Commit Time":CommitTime}}},
@@ -105,4 +105,4 @@ def CalculateLinesofCode(BranchName,CommitDate,CommitTime,R,Extension,filePath,R
                                                                }
 
                                                 }})
-
+    

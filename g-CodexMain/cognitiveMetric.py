@@ -124,6 +124,20 @@ def CalculateCognitiveMetricValue(filePath):
     
     return [FinalValue ,TotalCognitiveWeight ,TotalDistinctIdentifiers , TotalDistinctIdentifiers ]
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 #Function for Calculate Identifier
 def countIdentifiers(filePath):
     with open(filePath, 'r') as filehandle:

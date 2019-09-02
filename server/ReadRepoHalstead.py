@@ -1,7 +1,6 @@
 from github  import Github
 import urllib.request
 import requests
-
 import datetime
 import os
 import glob
@@ -13,14 +12,14 @@ from pymongo import InsertOne
 import datetime
 import sys
 import os, os.path
-import LinesOfCode
-import Comprehension
+import ReadRepoHalstead
 
+import Halstead
 
-#DB Connection to the cognitive value collection
+#DB Connection to the LinesofCode value collection
 myclient = MongoClient('localhost',27017)
 mydb = myclient["gCodexDB"]
-mycol =mydb["cognitiveValues"]
+mycol =mydb["Halstead"]
 
 
 #Filter required files   
@@ -43,7 +42,7 @@ def Avoid_Files(filePath ,rpName ,bUrl,ck):
       pass
 
 
-def TraverseCompr(username ,password,repo):
+def TraverseHalstead(username ,password,repo):
 
     repoName =repo
     baseUrl='https://raw.githubusercontent.com/'
@@ -52,7 +51,7 @@ def TraverseCompr(username ,password,repo):
     user =g.get_user()
     # print(user.login)
     # print(repo)
-    print("Com"+repo)
+    print("Halstead    "+repo)
     repository=g.get_repo(repo)
 
     branches=repository.get_branches()
@@ -92,13 +91,15 @@ def TraverseCompr(username ,password,repo):
                             rawPath=Avoid_Files(file_content.path,repoName,baseUrl,commitKey)
                             if(rawPath != None):
                                 r = requests.get(rawPath)
-                                print("Compreh"+rawPath)
+                                print("Halstead" + rawPath)
                                 ExtFileName = rawPath.split('/')
                                 File_Extension =(ExtFileName[len(ExtFileName)-1]).split('.')
-                                Comprehension.CalculateComprehension(br.name,Date[0],Date[1],r,File_Extension[1],file_content.path,rawPath)
+                                Halstead.CalculateHalstead(br.name,Date[0],Date[1],r,File_Extension[1],file_content.path,rawPath)
                 
                 except:
 
                     pass
-    return
+    
+    
+    return    
     
