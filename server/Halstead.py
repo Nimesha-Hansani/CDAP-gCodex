@@ -149,4 +149,3 @@ def CalculateHalstead(BranchName,CommitDate,CommitTime,R,Extension,filePath,Raw)
                                                                }
 
                                                 }})
-

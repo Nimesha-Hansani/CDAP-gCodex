@@ -53,68 +53,56 @@ def LinesOfCode(rawPath):
 
 
 
-def CalculateLinesofCode(Repo,BranchName,CommitDate,CommitTime,R,Extension,filePath,Raw):
+def CalculateLinesofCode(BranchName,CommitDate,CommitTime,R,Extension,filePath,Raw):
     global newCommitDate
     global newCommitTime
  
     if(newCommitDate != CommitDate) or ( newCommitTime!= CommitTime):
 
     
-        # mycol.update({"Branch": BranchName},
-        #                    {'$push':{"Commits":
-        #                             {"Commit Date":CommitDate,
-        #                              "Commit Time":CommitTime}}
-        #                             }
-        #              )
-        mycol.update({"Repository":Repo,
-                         "Branches":{'$elemMatch':{"Branch":BranchName}}},
-                                    {'$push':{"Branches.$.Commits":
-                                                {"Commit Date":CommitDate ,
-                                                 "Commit Time":CommitTime}}})
-      
+        mycol.update_one({"Branch": BranchName},
+                           {'$push':{"Commits":
+                                    {"Commit Date":CommitDate,
+                                     "Commit Time":CommitTime}}
+                                    }
+                     )
         newCommitDate = CommitDate
         newCommitTime = CommitTime
         
         AttrList = LinesOfCode(Raw)
-
-        mycol.update({"Repository":Repo,
-                        "Branches":{"$elemMatch":{"Branch":BranchName,
-                                       "Branch.$.Commits":{'$elemMatch':{
-                                       "Commit Date":CommitDate,
-                                       "Commit Time":CommitTime}}}}},
-                                        {'$push':{"Branch.$.Commits.$.Contents":{
+    
+        mycol.update({"Branch":BranchName,
+                             "Commits":{'$elemMatch':{"Commit Date":CommitDate ,
+                                                      "Commit Time":CommitTime}}},
+                                                      {'$push':{"Commits.$.Contents":
+                                                               { 
                                                                 "Source Lines of Code":AttrList[0],
                                                                 "Comment Lines" : AttrList[1],
                                                                 "File Lines of Code":AttrList[2],
                                                                 "File Extension":Extension,
                                                                 "Folder Path"   :filePath
+                                                               }
 
-                                    }}}
-                                        
-                                                   
-                                                               
-                                    
-                                       )
-    
-        
+                                                }}
+                    )
+
+
+
     else :
 
        
         AttrList = LinesOfCode(Raw)
-        mycol.update({"Repository":Repo,
-                        "Branches":{"$elemMatch":{"Branch":BranchName,
-                                       "Branch.$.Commits":{'$elemMatch':{
-                                       "Commit Date":CommitDate,
-                                       "Commit Time":CommitTime}}}}},
-                                       {'$push':{"Branch.$.Commits.$.Contents":{
+        mycol.update({"Branch":BranchName,
+                             "Commits":{'$elemMatch':{"Commit Date":CommitDate ,
+                                                      "Commit Time":CommitTime}}},
+                                                      {'$push':{"Commits.$.Contents":
+                                                               {
                                                                 "Source Lines of Code":AttrList[0],
                                                                 "Comment Lines" : AttrList[1],
                                                                 "File Lines of Code":AttrList[2],
                                                                 "File Extension":Extension,
                                                                 "Folder Path"   :filePath
+                                                               }
 
-                                    }}}
-                                                   
-                                                               
-                                    
-                                       )
+                                                }})
+    

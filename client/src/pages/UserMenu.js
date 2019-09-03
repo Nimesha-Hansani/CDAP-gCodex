@@ -156,7 +156,7 @@ class UserMenu extends Component {
                 <div className="card example-1 square scrollbar-cyan bordered-cyan">
               <ListGroup>    
                   {this.props.search.result.RepoList.map(name =>(
-                    <ListGroupItem key={name} tag="button" action value={name}>
+                    <ListGroupItem key={name} tag="button" action value={name} onClick={this.selectRepoforAnalyzes}>
                       {name}
                     </ListGroupItem>
                   ))}
