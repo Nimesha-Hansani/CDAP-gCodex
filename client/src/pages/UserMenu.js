@@ -26,7 +26,7 @@ class UserMenu extends Component {
 
   signOut = () => {
     localStorage.removeItem('state');
-    this.props.history.push("/");
+    this.props.history.push("/Sitepage");
   }
 
   setSearch = (event) =>{
