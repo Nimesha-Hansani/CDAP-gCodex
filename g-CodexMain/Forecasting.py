@@ -5,16 +5,15 @@ import pandas as pd
 
 connection = MongoClient('localhost',27017)
 Database = connection.gCodexDB
-data =Database.Halstead
+data =Database.LinesOfCode
 dataList =data.find()
 New_df = pd.DataFrame() #Temporary empty dataframe
 for data in dataList:
-    print(data['Branch'])
+
     
     for data1 in data['Commits']:
         # print(data1['Commit Date'] +' '+ data1['Commit Time'])
         try :
-            
             for data2 in data1['Contents']:
 
               FNameList = data2['Folder Path'].split('/')
@@ -41,11 +40,10 @@ for data in dataList:
                          str(data2['Program Volume']) ,str(data2['Program Difficulty']), 
                          str(data2['Program Effort']),str(data2['Programming Time'])     ]]
               # print(RowDataSet)
+              # print(RowDataSet)
               New_df = New_df.append(RowDataSet,ignore_index=False)
               
         except:
              continue
+print(New_df)
 
-# Create the pandas DataFrame 
-
-# Fil_Dataframe = New_df['']

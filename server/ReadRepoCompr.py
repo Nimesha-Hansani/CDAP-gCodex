@@ -1,7 +1,6 @@
 from github  import Github
 import urllib.request
 import requests
-
 import datetime
 import os
 import glob
@@ -25,6 +24,7 @@ mycol =mydb["cognitiveValues"]
 
 #Filter required files   
 def Avoid_Files(filePath ,rpName ,bUrl,ck):
+  
    ExtensionList =['asc','txt','log','cnf','cfg','conf','bak','bk','md','R','css','csv','html','ihtml',
                     'htm','xhtml','xht','maff','log','xsl','png','gif','gz','r','zip','xml','BULD','sql']
 
@@ -33,7 +33,7 @@ def Avoid_Files(filePath ,rpName ,bUrl,ck):
       fileformat =filePath.split(".")[1]
       if fileformat in pExList:
           rawUrl = bUrl + rpName +'/'+ ck +'/'+filePath
-          
+        
           return rawUrl
       elif fileformat in ExtensionList:
           return  None
@@ -49,27 +49,30 @@ def TraverseCompr(username ,password,repo):
     baseUrl='https://raw.githubusercontent.com/'
 
     g = Github(username, password)
-    user =g.get_user()
-    # print(user.login)
-    # print(repo)
-    print("Com"+repo)
+    
     repository=g.get_repo(repo)
-
+    
+    mycol.insert_one({"Repository":repo})
+    
     branches=repository.get_branches()
 
     for br in branches:
         
         Branch=br.name
         headCommit=br.commit.sha
-        mycol.insert_one({"Branch":Branch})
-
-        # print("This is  branch commit : " +headCommit)
+        mycol.update({"Repository":repository.full_name},
+                    {'$push':{"Branches":{
+                              "Branch":Branch
+                    }}})
+        
+        
         commits = repository.get_commits(headCommit)
 
         for com in commits:
 
             #CommitTime
             commitDateTime = com.commit.author.date
+         
             TimeStampStr= commitDateTime.strftime("%Y-%m-%d %H-%M-%S")
             Date = TimeStampStr.split(' ')
             commitKey = com.sha
@@ -78,25 +81,48 @@ def TraverseCompr(username ,password,repo):
             for tr in tree:
 
                 try:
-                    # print("Tree of the Commit :"+ tr.sha + "Path :" + tr.path)
-                    treeContent=repository.get_contents(tr.path)
-                    # print(treeContent)
-                    while len(treeContent)> 1:
-                        file_content=treeContent.pop(0)
 
-                        if file_content.type =="dir":
-                            treeContent.extend(repository.get_contents(file_content.path))
+                    if(tr.type == "tree"):
 
-                        else :
-                
-                            rawPath=Avoid_Files(file_content.path,repoName,baseUrl,commitKey)
-                            if(rawPath != None):
-                                r = requests.get(rawPath)
-                                print("Compreh"+rawPath)
-                                ExtFileName = rawPath.split('/')
-                                File_Extension =(ExtFileName[len(ExtFileName)-1]).split('.')
-                                Comprehension.CalculateComprehension(br.name,Date[0],Date[1],r,File_Extension[1],file_content.path,rawPath)
-                
+                        treeContent=repository.get_contents(tr.path)
+                        while len(treeContent) > 0:
+                              file_content=treeContent.pop(0)
+
+                              if file_content.type =="dir":
+                                    treeContent.extend(repository.get_contents(file_content.path))
+
+                              else:
+                                    print(file_content.path)
+                                    rawPath=Avoid_Files(file_content.path,repoName,baseUrl,commitKey)
+
+                                    if(rawPath != None):
+                                           print(rawPath)
+                                           r = requests.get(rawPath)
+                               
+                                           ExtFileName = rawPath.split('/')
+                                           File_Extension =(ExtFileName[len(ExtFileName)-1]).split('.')
+                               
+                                           Comprehension.CalculateComprehension(br.name,Date[0],Date[1],File_Extension[1],file_content.path,rawPath,repo)
+
+                    elif (tr.type == "blob"):
+                        print(tr.path)
+                        rawPath=Avoid_Files(tr.path,repoName,baseUrl,commitKey)
+
+                        if(rawPath != None):
+                                           print(rawPath)
+                                           r = requests.get(rawPath)
+                               
+                                           ExtFileName = rawPath.split('/')
+                                           File_Extension =(ExtFileName[len(ExtFileName)-1]).split('.')
+                               
+                                           Comprehension.CalculateComprehension(br.name,Date[0],Date[1],File_Extension[1],tr.path,rawPath,repo)
+                        
+                  
+                    else:
+
+                        pass
+
+
                 except:
 
                     pass

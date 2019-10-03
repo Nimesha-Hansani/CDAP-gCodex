@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { Alert } from 'reactstrap';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
+import image from  './comb.png';
 
 import {login, loadSitePage} from '../actions/actions';
 
@@ -93,9 +94,9 @@ import {
                 <Row>
             <Col lg={6}>
             <Card style={{marginTop: '40px',marginLeft : '20px'}} >
-                <CardImg top width="90%" src="https://github.githubassets.com/images/modules/logos_page/GitHub-Logo.png" alt="Card image cap" />
+                <CardImg top width="90%" src={image} alt="Card image cap"  style={{height: '95px'}}/>
                 <CardBody>
-                <CardTitle style={{color:'green'}}>Sign in to gCodex Account with your Git Account Credintieals</CardTitle>
+                <CardTitle style={{color:'green'}}>Sign in to gCodex Account with your Git Account Credentials</CardTitle>
 
                     {(this.state.login === false) ? <Alert color="danger" >Invalid user login..!</Alert>:null}
                 <FormGroup >

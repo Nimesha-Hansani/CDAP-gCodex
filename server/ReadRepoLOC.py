@@ -61,13 +61,14 @@ def TraverseLOC(username ,password,repo):
         headCommit=br.commit.sha
         mycol.insert_one({"Branch":Branch})
 
-        # print("This is  branch commit : " +headCommit)
+        
         commits = repository.get_commits(headCommit)
 
         for com in commits:
 
             #CommitTime
             commitDateTime = com.commit.author.date
+            print(commitDateTime)
             TimeStampStr= commitDateTime.strftime("%Y-%m-%d %H-%M-%S")
             Date = TimeStampStr.split(' ')
             commitKey = com.sha

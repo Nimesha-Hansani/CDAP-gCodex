@@ -69,6 +69,7 @@ def TraverseHalstead(username ,password,repo):
 
             #CommitTime
             commitDateTime = com.commit.author.date
+            print(commitDateTime)
             TimeStampStr= commitDateTime.strftime("%Y-%m-%d %H-%M-%S")
             Date = TimeStampStr.split(' ')
             commitKey = com.sha

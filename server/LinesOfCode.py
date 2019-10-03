@@ -57,10 +57,10 @@ def CalculateLinesofCode(BranchName,CommitDate,CommitTime,R,Extension,filePath,R
     global newCommitDate
     global newCommitTime
  
-    if(newCommitDate != CommitDate) or ( newCommitTime!= CommitTime):
+    if(newCommitDate != CommitDate) or ( newCommitTime != CommitTime):
 
     
-        mycol.update_one({"Branch": BranchName},
+        mycol.update_one({"Branch":BranchName},
                            {'$push':{"Commits":
                                     {"Commit Date":CommitDate,
                                      "Commit Time":CommitTime}}
@@ -75,8 +75,7 @@ def CalculateLinesofCode(BranchName,CommitDate,CommitTime,R,Extension,filePath,R
                              "Commits":{'$elemMatch':{"Commit Date":CommitDate ,
                                                       "Commit Time":CommitTime}}},
                                                       {'$push':{"Commits.$.Contents":
-                                                               { 
-                                                                "Source Lines of Code":AttrList[0],
+                                                               {"Source Lines of Code":AttrList[0],
                                                                 "Comment Lines" : AttrList[1],
                                                                 "File Lines of Code":AttrList[2],
                                                                 "File Extension":Extension,
@@ -84,8 +83,9 @@ def CalculateLinesofCode(BranchName,CommitDate,CommitTime,R,Extension,filePath,R
                                                                }
 
                                                 }}
-                    )
 
+
+               )  
 
 
     else :
@@ -96,13 +96,15 @@ def CalculateLinesofCode(BranchName,CommitDate,CommitTime,R,Extension,filePath,R
                              "Commits":{'$elemMatch':{"Commit Date":CommitDate ,
                                                       "Commit Time":CommitTime}}},
                                                       {'$push':{"Commits.$.Contents":
-                                                               {
-                                                                "Source Lines of Code":AttrList[0],
+                                                               {"Source Lines of Code":AttrList[0],
                                                                 "Comment Lines" : AttrList[1],
                                                                 "File Lines of Code":AttrList[2],
                                                                 "File Extension":Extension,
                                                                 "Folder Path"   :filePath
                                                                }
 
-                                                }})
+                                                }}
+
+
+               )  
     

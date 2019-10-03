@@ -140,68 +140,84 @@ def CalculateComprehensionMetricValue(RawPath):
 
 
     FinalValue = (TotalCognitiveWeight + TotalDistinctIdentifiers + TotalDistinctOperators)/ LinesOfCode
-    print("LinesOfCode"+ str(LinesOfCode))
-    print(TotalCognitiveWeight)
+    # print("LinesOfCode"+ str(LinesOfCode))
+    # print(TotalCognitiveWeight)
+    print("FinalValue" + FinalValue)
+    print("TotalCognitiveWeight" +  TotalCognitiveWeight )
     return [FinalValue ,TotalCognitiveWeight ,TotalDistinctIdentifiers , TotalDistinctIdentifiers ]
 
 
 
-def CalculateComprehension(BranchName,CommitDate,CommitTime,R,Extension,filePath,Raw):
+def CalculateComprehension(BranchName,CommitDate,CommitTime,Extension,filePath,Raw,repo):
     
-    global newCommitDate
-    global newCommitTime
-    if(newCommitDate != CommitDate) or ( newCommitTime!= CommitTime):
-
+    global newCommitDate 
+    global newCommitTime 
+   
+    if(newCommitDate != CommitDate) or ( newCommitTime != CommitTime):
+        
+        
     
-        mycol.update_one({"Branch": BranchName},
-                           {'$push':{"Commits":
-                                    {"Commit Date":CommitDate,
-                                     "Commit Time":CommitTime}}
-                                    }
-                     )
+        mycol.update_many({"Repository":repo,
+                          "Branches":{'$elemMatch':{"Branch":BranchName}}},
+                          {'$push':{"Branches.$.Commits":{
+                                  "Commit Date":CommitDate,
+                                  "Commit Time":CommitTime
+                           }}})
+        print(newCommitDate+ " Inserted")
         newCommitDate = CommitDate
         newCommitTime = CommitTime
-        print(newCommitDate)
+      
         AttrList = CalculateComprehensionMetricValue(Raw)
         print(AttrList[0])
-        mycol.update({"Branch":BranchName,
-                             "Commits":{'$elemMatch':{"Commit Date":CommitDate ,
-                                                      "Commit Time":CommitTime}}},
-                                                      {'$push':{"Commits.$.Contents":
-                                                               { 
-                                                                "Cognitive Metric Value":AttrList[0],
-                                                                "Cogitive Weight"   :AttrList[1],
-                                                                "Distinct Identifiers" : AttrList[2],
-                                                                "Distinct Operators": AttrList[3],
-                                                                "File Extension":Extension,
-                                                                "Folder Path"   :filePath
-                                                               }
-
-                                                }}
-                    )
-
-
+      
+        mycol.update_many({"Repository":repo,
+                  "Branches":{'$elemMatch':{
+                   "Branch":BranchName ,"Commits.Commit Date":CommitDate,"Commits.Commit Time":CommitTime}}},
+               {
+                   '$push':{"Branches.$[outer].Commits.$[inner].Contents":{
+                                                            "Cognitive Metric Value":AttrList[0],
+                                                            "Cogitive Weight"   :AttrList[1],
+                                                             "Distinct Identifiers" : AttrList[2],
+                                                               "Distinct Operators": AttrList[3],
+                                                               "File Extension":Extension,
+                                                                 "Folder Path"   :filePath
+                   }}
+               },
+               
+                array_filters= [  {'outer.Branch':BranchName},
+                                  {'inner.Commit Date':CommitDate,
+                                  'inner.Commit Time':CommitTime}
+                                 ]
+               
+               )
 
     else :
 
        
         AttrList = CalculateComprehensionMetricValue(Raw)
         print(AttrList[0])
-        mycol.update({"Branch":BranchName,
-                             "Commits":{'$elemMatch':{"Commit Date":CommitDate ,
-                                                      "Commit Time":CommitTime}}},
-                                                      {'$push':{"Commits.$.Contents":
-                                                               {
+
+        mycol.update_many({"Repository":repo,
+                  "Branches":{'$elemMatch':{
+                   "Branch Name":BranchName ,"Commits.Commit Date":CommitDate,"Commits.Commit Time":CommitTime}}},
+               {
+                   '$push':{"Branches.$[outer].Commits.$[inner].Contents":{
                                                                 "Cognitive Metric Value":AttrList[0],
                                                                 "Cogitive Weight"   :AttrList[1],
                                                                 "Distinct Identifiers" : AttrList[2],
                                                                 "Distinct Operators": AttrList[3],
                                                                 "File Extension":Extension,
                                                                 "Folder Path"   :filePath
-                                                               }
-
-                                                }}
-                                )
+                   }}
+               },
+               
+                array_filters= [  {'outer.Branch Name':BranchName},
+                                  {'inner.Commit Date':CommitDate,
+                                  'inner.Commit Time':CommitTime}
+                                 ]
+               
+               )
+        
 
     
    
