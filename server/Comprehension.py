@@ -32,6 +32,36 @@ def CalculateCognitiveWeight(line):
 
     return cognitiveWeight
 
+#Function for  Calculate Logical Operators
+def CalculateLogicalOperators(line):
+    
+    c2 = 0
+    if '!' in line:
+      c2 = c2 + 1
+    if '!=' in line:
+      c2 = c2 + 1
+    if '<' in line:
+      c2 = c2 + 1
+    if '<=' in line:
+      c2 = c2 + 1
+    if '>' in line :
+       c2 = c2 + 1
+    if '>=' in line:
+       c2 = c2 + 1
+    if '&&' in line:
+       c2 = c2 + 1
+    if '||' in line:
+        c2 = c2 + 1
+    if '==' in line:
+        c2 = c2 + 1
+    if 'or' in line:
+        c2 = c2 + 1
+    if 'and' in line:
+        c2 = c2 + 1
+    
+    return c2     
+
+
 #Function For Calculate Arithmetic Operators
 def CalculateArithmeticOperartors(line):
     c1 = 0
@@ -60,38 +90,7 @@ def CalculateArithmeticOperartors(line):
     if '--' in line:
          c1 = c1 + 1
 
-      
     return c1
-
-#Function for  Calculate Logical Operators
-def CalculateLogicalOperators(line):
-    
-    c2 = 0
-    if '!' in line:
-      c2 = c2 + 1
-    if '!=' in line:
-      c2 = c2 + 1
-    if '<' in line:
-      c2 = c2 + 1
-    if '<=' in line:
-      c2 = c2 + 1
-    if '>' in line :
-       c2 = c2 + 1
-    if '>=' in line:
-       c2 = c2 + 1
-    if '&&' in line:
-       c2 = c2 + 1
-    if '||' in line:
-        c2 = c2 + 1
-    if '==' in line:
-        c2 = c2 + 1
-    if 'or' in line:
-        c2 = c2 + 1
-    if 'and' in line:
-        c2 = c2 + 1
-    
-    return c2      
-    
 
 #Count pass distinct identifier
 def countIdentifiers(filePath):
@@ -119,9 +118,8 @@ def countIdentifiers(filePath):
         Identifiers = set (wordList)
         return len(Identifiers)
 
-#Calculate ComprehensionaMetrincValues
+
 def CalculateComprehensionMetricValue(RawPath):
-    
     
     LinesOfCode= 0
     TotalDistinctIdentifiers = countIdentifiers(RawPath)
@@ -134,32 +132,23 @@ def CalculateComprehensionMetricValue(RawPath):
     # print(WordContent)
     SplittedWord = WordContent.split(' ')
     TotalDistinctOperators =CalculateArithmeticOperartors(SplittedWord) + CalculateLogicalOperators(SplittedWord)
-    
+
     for line in get_ver:
             CalculateCognitiveWeight(line)
             TotalCognitiveWeight = TotalCognitiveWeight + CalculateCognitiveWeight(line)
             if line.strip():
                LinesOfCode = LinesOfCode + 1
 
-
     FinalValue = (TotalCognitiveWeight + TotalDistinctIdentifiers + TotalDistinctOperators)/ LinesOfCode
-    # print("LinesOfCode"+ str(LinesOfCode))
-    # print(TotalCognitiveWeight)
-    print("FinalValue" + FinalValue)
-    print("TotalCognitiveWeight" +  TotalCognitiveWeight )
     return [FinalValue ,TotalCognitiveWeight ,TotalDistinctIdentifiers , TotalDistinctIdentifiers ]
-
-
-
+    
 def CalculateComprehension(BranchName,CommitDate,CommitTime,FileExtension,FilePath,RawPath,Repo):
     
     
-   
-    if (CommitDate in DateList) and (CommitTime in TimeList):
-        
+   if (CommitDate in DateList) and (CommitTime in TimeList):
+
         AttrList = CalculateComprehensionMetricValue(RawPath)
-        print(AttrList[0])
-      
+
         mycol.update_many({"Repository":Repo,
                   "Branches":{'$elemMatch':{
                    "Branch":BranchName ,"Commits.Commit Date":CommitDate,"Commits.Commit Time":CommitTime}}},
@@ -167,10 +156,10 @@ def CalculateComprehension(BranchName,CommitDate,CommitTime,FileExtension,FilePa
                    '$push':{"Branches.$[outer].Commits.$[inner].Contents":{
                                                             "Cognitive Metric Value":AttrList[0],
                                                             "Cogitive Weight"   :AttrList[1],
-                                                             "Distinct Identifiers" : AttrList[2],
-                                                               "Distinct Operators": AttrList[3],
-                                                               "File Extension":FileExtension,
-                                                                 "Folder Path" :FilePath
+                                                            "Distinct Identifiers" : AttrList[2],
+                                                            "Distinct Operators": AttrList[3],
+                                                            "File Extension":FileExtension,
+                                                            "Folder Path"   :FilePath
                    }}
                },
                
@@ -180,12 +169,8 @@ def CalculateComprehension(BranchName,CommitDate,CommitTime,FileExtension,FilePa
                                  ]
                
                )
-
-    else :
-
-       
-        AttrList = CalculateComprehensionMetricValue(RawPath)
-        print(AttrList[0])
+  
+   else :
 
         DateList.append(CommitDate)
         TimeList.append(CommitTime)
@@ -197,27 +182,30 @@ def CalculateComprehension(BranchName,CommitDate,CommitTime,FileExtension,FilePa
                                   "Commit Time":CommitTime
                            }}})
 
+        AttrList = CalculateComprehensionMetricValue(RawPath)
+    
         mycol.update_many({"Repository":Repo,
                   "Branches":{'$elemMatch':{
-                   "Branch Name":BranchName ,"Commits.Commit Date":CommitDate,"Commits.Commit Time":CommitTime}}},
+                   "Branch":BranchName ,"Commits.Commit Date":CommitDate,"Commits.Commit Time":CommitTime}}},
                {
                    '$push':{"Branches.$[outer].Commits.$[inner].Contents":{
-                                                                "Cognitive Metric Value":AttrList[0],
-                                                                "Cogitive Weight"   :AttrList[1],
-                                                                "Distinct Identifiers" : AttrList[2],
-                                                                "Distinct Operators": AttrList[3],
-                                                                "File Extension":FileExtension,
-                                                                "Folder Path"   :FilePath
+                                                            "Cognitive Metric Value":AttrList[0],
+                                                            "Cogitive Weight"   :AttrList[1],
+                                                            "Distinct Identifiers" : AttrList[2],
+                                                            "Distinct Operators": AttrList[3],
+                                                            "File Extension":FileExtension,
+                                                            "Folder Path"   :FilePath
                    }}
                },
                
-                array_filters= [  {'outer.Branch Name':BranchName},
+                array_filters= [  {'outer.Branch':BranchName},
                                   {'inner.Commit Date':CommitDate,
                                   'inner.Commit Time':CommitTime}
                                  ]
                
                )
-        
+
+         
 
     
    

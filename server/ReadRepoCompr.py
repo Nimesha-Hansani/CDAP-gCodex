@@ -92,7 +92,7 @@ def TraverseCompr(username ,password,repo):
                                     treeContent.extend(repository.get_contents(file_content.path))
 
                               else:
-                                    print(file_content.path)
+                                    # print(file_content.path)
                                     rawPath=Avoid_Files(file_content.path,repoName,baseUrl,commitKey)
 
                                     if(rawPath != None):
@@ -109,7 +109,7 @@ def TraverseCompr(username ,password,repo):
                         rawPath=Avoid_Files(tr.path,repoName,baseUrl,commitKey)
 
                         if(rawPath != None):
-                                           print(rawPath)
+                                        #    print(rawPath)
                                            r = requests.get(rawPath)
                                
                                            ExtFileName = rawPath.split('/')

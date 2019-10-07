@@ -48,20 +48,21 @@ def TraverseHalstead(username ,password,repo):
     baseUrl='https://raw.githubusercontent.com/'
 
     g = Github(username, password)
-    user =g.get_user()
-    # print(user.login)
-    # print(repo)
-    print("Halstead    "+repo)
     repository=g.get_repo(repo)
-
+    
+    mycol.insert_one({"Repository":repo})
+    user =g.get_user()
     branches=repository.get_branches()
 
     for br in branches:
         
         Branch=br.name
         headCommit=br.commit.sha
-        mycol.insert_one({"Branch":Branch})
-
+        mycol.update({"Repository":repository.full_name},
+                    {'$push':{"Branches":{
+                              "Branch":Branch
+                    }}})
+        print("Branch Inserted")
         # print("This is  branch commit : " +headCommit)
         commits = repository.get_commits(headCommit)
 
@@ -69,7 +70,7 @@ def TraverseHalstead(username ,password,repo):
 
             #CommitTime
             commitDateTime = com.commit.author.date
-            print(commitDateTime)
+           
             TimeStampStr= commitDateTime.strftime("%Y-%m-%d %H-%M-%S")
             Date = TimeStampStr.split(' ')
             commitKey = com.sha
@@ -77,29 +78,45 @@ def TraverseHalstead(username ,password,repo):
 
             for tr in tree:
 
-                try:
-                    # print("Tree of the Commit :"+ tr.sha + "Path :" + tr.path)
-                    treeContent=repository.get_contents(tr.path)
-                    # print(treeContent)
-                    while len(treeContent)> 1:
-                        file_content=treeContent.pop(0)
+               try:
+                    if(tr.type == "tree"):
+                        treeContent=repository.get_contents(tr.path)
+                        
+                        # print(treeContent)
+                        while len(treeContent)> 1:
+                            file_content=treeContent.pop(0)
 
-                        if file_content.type =="dir":
-                            treeContent.extend(repository.get_contents(file_content.path))
+                            if file_content.type =="dir":
+                                    treeContent.extend(repository.get_contents(file_content.path))
+                            else:
+                                    
+                                    rawPath=Avoid_Files(file_content.path,repoName,baseUrl,commitKey)
+                                    if(rawPath != None):
+                                     
+                                        r = requests.get(rawPath)
+                               
+                                        ExtFileName = rawPath.split('/')
+                                        File_Extension =(ExtFileName[len(ExtFileName)-1]).split('.')
+                                        Halstead. CalculateHalstead(Branch,Date[0],Date[1],File_Extension[1],file_content.path,rawPath,repository.full_name)
+                    
+                    elif (tr.type == "blob"):
+                        
+                        
+                        rawPath=Avoid_Files(tr.path,repoName,baseUrl,commitKey)
 
-                        else :
-                
-                            rawPath=Avoid_Files(file_content.path,repoName,baseUrl,commitKey)
-                            if(rawPath != None):
-                                r = requests.get(rawPath)
-                                print("Halstead" + rawPath)
-                                ExtFileName = rawPath.split('/')
-                                File_Extension =(ExtFileName[len(ExtFileName)-1]).split('.')
-                                Halstead.CalculateHalstead(br.name,Date[0],Date[1],r,File_Extension[1],file_content.path,rawPath)
-                
-                except:
+                        if(rawPath != None):
+                                        
+                           
+                            r = requests.get(rawPath)
+                               
+                            ExtFileName = rawPath.split('/')
+                            File_Extension =(ExtFileName[len(ExtFileName)-1]).split('.')
+                            Halstead.CalculateHalstead(Branch,Date[0],Date[1],File_Extension[1],tr.path,rawPath,repository.full_name)
+                    else:
+                        pass
+               except:
 
-                    pass
+                   pass
     
     
     return    

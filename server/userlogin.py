@@ -83,8 +83,8 @@ def searchByInputs ():
 def readContents():
     repo = request.args.get('repo')
     
-    # ReadRepoHalstead.TraverseHalstead(UNM,PSW,repo)
-    ReadRepoLOC.TraverseLOC(UNM ,PSW,repo)
+    ReadRepoHalstead.TraverseHalstead(UNM,PSW,repo)
+    # ReadRepoLOC.TraverseLOC(UNM ,PSW,repo)
     # ReadRepoCompr.TraverseCompr(UNM,PSW,repo)
     
     
