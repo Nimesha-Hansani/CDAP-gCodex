@@ -102,10 +102,10 @@ def TraverseCompr(username ,password,repo):
                                            ExtFileName = rawPath.split('/')
                                            File_Extension =(ExtFileName[len(ExtFileName)-1]).split('.')
                                
-                                           Comprehension.CalculateComprehension(br.name,Date[0],Date[1],File_Extension[1],file_content.path,rawPath,repo)
+                                           Comprehension.CalculateComprehension(Branch,Date[0],Date[1],File_Extension[1],file_content.path,rawPath,repository.full_name)
 
                     elif (tr.type == "blob"):
-                        print(tr.path)
+                       
                         rawPath=Avoid_Files(tr.path,repoName,baseUrl,commitKey)
 
                         if(rawPath != None):
@@ -115,7 +115,7 @@ def TraverseCompr(username ,password,repo):
                                            ExtFileName = rawPath.split('/')
                                            File_Extension =(ExtFileName[len(ExtFileName)-1]).split('.')
                                
-                                           Comprehension.CalculateComprehension(br.name,Date[0],Date[1],File_Extension[1],tr.path,rawPath,repo)
+                                           Comprehension.CalculateComprehension(Branch,Date[0],Date[1],File_Extension[1],tr.path,rawPath,repository.full_name)
                         
                   
                     else:

@@ -10,13 +10,18 @@ import urllib.request
 import requests
 import sys
 import os, os.path
-#DB Connection to the cognitive value collection
 
+
+#DB Connection to the cognitive value collection
 myclient = MongoClient('localhost',27017)
 mydb = myclient["gCodexDB"]
 mycol =mydb["LinesOfCode"]
 newCommitDate ="Null"
 newCommitTime ="Null"
+DateList = []
+TimeList = []
+
+
 
 def LinesOfCode(rawPath):
 
@@ -44,67 +49,65 @@ def LinesOfCode(rawPath):
     SourceLinesOfCode = fileLineCount - fileBlankLineCount -fileCommentLineCount
     print(SourceLinesOfCode,fileCommentLineCount,fileLineCount)
     return [SourceLinesOfCode,fileCommentLineCount,fileLineCount]
-    
 
+def CalculateLinesofCode(BranchName,CommitDate,CommitTime,FileExtension,FilePath,RawPath,Repo):
+       
+    if (CommitDate in DateList) and (CommitTime in TimeList):
 
+        AttrList = LinesOfCode(RawPath)
 
-
-
-
-
-
-def CalculateLinesofCode(BranchName,CommitDate,CommitTime,R,Extension,filePath,Raw):
-    global newCommitDate
-    global newCommitTime
- 
-    if(newCommitDate != CommitDate) or ( newCommitTime != CommitTime):
-
-    
-        mycol.update_one({"Branch":BranchName},
-                           {'$push':{"Commits":
-                                    {"Commit Date":CommitDate,
-                                     "Commit Time":CommitTime}}
-                                    }
-                     )
-        newCommitDate = CommitDate
-        newCommitTime = CommitTime
-        
-        AttrList = LinesOfCode(Raw)
-    
-        mycol.update({"Branch":BranchName,
-                             "Commits":{'$elemMatch':{"Commit Date":CommitDate ,
-                                                      "Commit Time":CommitTime}}},
-                                                      {'$push':{"Commits.$.Contents":
-                                                               {"Source Lines of Code":AttrList[0],
-                                                                "Comment Lines" : AttrList[1],
-                                                                "File Lines of Code":AttrList[2],
-                                                                "File Extension":Extension,
-                                                                "Folder Path"   :filePath
-                                                               }
-
-                                                }}
-
-
-               )  
-
+        mycol.update_many({"Repository":Repo,
+                  "Branches":{'$elemMatch':{
+                   "Branch":BranchName ,"Commits.Commit Date":CommitDate,"Commits.Commit Time":CommitTime}}},
+               {
+                   '$push':{"Branches.$[outer].Commits.$[inner].Contents":{
+                                                            "Source Lines of Code":AttrList[0],
+                                                            "Comment Lines"    :AttrList[1],
+                                                            "File Lines of Code" : AttrList[2],
+                                                            "File Extension":FileExtension,
+                                                            "Folder Path"   :FilePath
+                   }}
+               },
+               
+                array_filters= [  {'outer.Branch':BranchName},
+                                  {'inner.Commit Date':CommitDate,
+                                  'inner.Commit Time':CommitTime}
+                                 ]
+               
+               )
 
     else :
 
-       
-        AttrList = LinesOfCode(Raw)
-        mycol.update({"Branch":BranchName,
-                             "Commits":{'$elemMatch':{"Commit Date":CommitDate ,
-                                                      "Commit Time":CommitTime}}},
-                                                      {'$push':{"Commits.$.Contents":
-                                                               {"Source Lines of Code":AttrList[0],
-                                                                "Comment Lines" : AttrList[1],
-                                                                "File Lines of Code":AttrList[2],
-                                                                "File Extension":Extension,
-                                                                "Folder Path"   :filePath
-                                                               }
+        DateList.append(CommitDate)
+        TimeList.append(CommitTime)
 
-                                                }}
-
-
-               )  
+        mycol.update_many({"Repository":Repo,
+                          "Branches":{'$elemMatch':{"Branch":BranchName}}},
+                          {'$push':{"Branches.$.Commits":{
+                                  "Commit Date":CommitDate,
+                                  "Commit Time":CommitTime
+                           }}})
+        
+        AttrList = LinesOfCode(RawPath)
     
+        mycol.update_many({"Repository":Repo,
+                  "Branches":{'$elemMatch':{
+                   "Branch":BranchName ,"Commits.Commit Date":CommitDate,"Commits.Commit Time":CommitTime}}},
+               {
+                   '$push':{"Branches.$[outer].Commits.$[inner].Contents":{
+                                                            "Source Lines of Code":AttrList[0],
+                                                            "Comment Lines"    :AttrList[1],
+                                                            "File Lines of Code" : AttrList[2],
+                                                            "File Extension":FileExtension,
+                                                            "Folder Path"   :FilePath
+                   }}
+               },
+               
+                array_filters= [  {'outer.Branch':BranchName},
+                                  {'inner.Commit Date':CommitDate,
+                                  'inner.Commit Time':CommitTime}
+                                 ]
+               
+               )
+
+       

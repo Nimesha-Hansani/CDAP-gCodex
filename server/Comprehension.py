@@ -13,6 +13,8 @@ mydb = myclient["gCodexDB"]
 mycol =mydb["cognitiveValues"]
 newCommitDate ="Null"
 newCommitTime ="Null"
+DateList = []
+TimeList = []
 
 #Function for Calculate Cognitive Weight
 def CalculateCognitiveWeight(line):
@@ -63,6 +65,7 @@ def CalculateArithmeticOperartors(line):
 
 #Function for  Calculate Logical Operators
 def CalculateLogicalOperators(line):
+    
     c2 = 0
     if '!' in line:
       c2 = c2 + 1
@@ -148,29 +151,16 @@ def CalculateComprehensionMetricValue(RawPath):
 
 
 
-def CalculateComprehension(BranchName,CommitDate,CommitTime,Extension,filePath,Raw,repo):
+def CalculateComprehension(BranchName,CommitDate,CommitTime,FileExtension,FilePath,RawPath,Repo):
     
-    global newCommitDate 
-    global newCommitTime 
+    
    
-    if(newCommitDate != CommitDate) or ( newCommitTime != CommitTime):
+    if (CommitDate in DateList) and (CommitTime in TimeList):
         
-        
-    
-        mycol.update_many({"Repository":repo,
-                          "Branches":{'$elemMatch':{"Branch":BranchName}}},
-                          {'$push':{"Branches.$.Commits":{
-                                  "Commit Date":CommitDate,
-                                  "Commit Time":CommitTime
-                           }}})
-        print(newCommitDate+ " Inserted")
-        newCommitDate = CommitDate
-        newCommitTime = CommitTime
-      
-        AttrList = CalculateComprehensionMetricValue(Raw)
+        AttrList = CalculateComprehensionMetricValue(RawPath)
         print(AttrList[0])
       
-        mycol.update_many({"Repository":repo,
+        mycol.update_many({"Repository":Repo,
                   "Branches":{'$elemMatch':{
                    "Branch":BranchName ,"Commits.Commit Date":CommitDate,"Commits.Commit Time":CommitTime}}},
                {
@@ -179,8 +169,8 @@ def CalculateComprehension(BranchName,CommitDate,CommitTime,Extension,filePath,R
                                                             "Cogitive Weight"   :AttrList[1],
                                                              "Distinct Identifiers" : AttrList[2],
                                                                "Distinct Operators": AttrList[3],
-                                                               "File Extension":Extension,
-                                                                 "Folder Path"   :filePath
+                                                               "File Extension":FileExtension,
+                                                                 "Folder Path" :FilePath
                    }}
                },
                
@@ -194,10 +184,20 @@ def CalculateComprehension(BranchName,CommitDate,CommitTime,Extension,filePath,R
     else :
 
        
-        AttrList = CalculateComprehensionMetricValue(Raw)
+        AttrList = CalculateComprehensionMetricValue(RawPath)
         print(AttrList[0])
 
-        mycol.update_many({"Repository":repo,
+        DateList.append(CommitDate)
+        TimeList.append(CommitTime)
+
+        mycol.update_many({"Repository":Repo,
+                          "Branches":{'$elemMatch':{"Branch":BranchName}}},
+                          {'$push':{"Branches.$.Commits":{
+                                  "Commit Date":CommitDate,
+                                  "Commit Time":CommitTime
+                           }}})
+
+        mycol.update_many({"Repository":Repo,
                   "Branches":{'$elemMatch':{
                    "Branch Name":BranchName ,"Commits.Commit Date":CommitDate,"Commits.Commit Time":CommitTime}}},
                {
@@ -206,8 +206,8 @@ def CalculateComprehension(BranchName,CommitDate,CommitTime,Extension,filePath,R
                                                                 "Cogitive Weight"   :AttrList[1],
                                                                 "Distinct Identifiers" : AttrList[2],
                                                                 "Distinct Operators": AttrList[3],
-                                                                "File Extension":Extension,
-                                                                "Folder Path"   :filePath
+                                                                "File Extension":FileExtension,
+                                                                "Folder Path"   :FilePath
                    }}
                },
                
