@@ -83,7 +83,7 @@ def TraverseHalstead(username ,password,repo):
                         treeContent=repository.get_contents(tr.path)
                         
                         # print(treeContent)
-                        while len(treeContent)> 1:
+                        while len(treeContent)> 0:
                             file_content=treeContent.pop(0)
 
                             if file_content.type =="dir":
