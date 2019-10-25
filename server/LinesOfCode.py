@@ -47,11 +47,11 @@ def LinesOfCode(rawPath):
             fileCommentLineCount += 1
             
     SourceLinesOfCode = fileLineCount - fileBlankLineCount -fileCommentLineCount
-    print(SourceLinesOfCode,fileCommentLineCount,fileLineCount)
+    # print(SourceLinesOfCode,fileCommentLineCount,fileLineCount)
     return [SourceLinesOfCode,fileCommentLineCount,fileLineCount]
 
-def CalculateLinesofCode(BranchName,CommitDate,CommitTime,FileExtension,FilePath,RawPath,Repo):
-       
+def CalculateLinesofCode(BranchName,CommitDate,CommitTime,FileExtension,FilePath,RawPath,Repo,LocLink):
+    print(FilePath) 
     if (CommitDate in DateList) and (CommitTime in TimeList):
 
         AttrList = LinesOfCode(RawPath)
@@ -65,7 +65,8 @@ def CalculateLinesofCode(BranchName,CommitDate,CommitTime,FileExtension,FilePath
                                                             "Comment Lines"    :AttrList[1],
                                                             "File Lines of Code" : AttrList[2],
                                                             "File Extension":FileExtension,
-                                                            "Folder Path"   :FilePath
+                                                            "Folder Path"   :FilePath,
+                                                            "Git_Web_Link"  :LocLink
                    }}
                },
                
@@ -99,7 +100,8 @@ def CalculateLinesofCode(BranchName,CommitDate,CommitTime,FileExtension,FilePath
                                                             "Comment Lines"    :AttrList[1],
                                                             "File Lines of Code" : AttrList[2],
                                                             "File Extension":FileExtension,
-                                                            "Folder Path"   :FilePath
+                                                            "Folder Path"   :FilePath,
+                                                            "Git_Web_Link"  :LocLink
                    }}
                },
                

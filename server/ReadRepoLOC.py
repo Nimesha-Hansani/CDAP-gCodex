@@ -49,16 +49,20 @@ def TraverseLOC(username ,password,repo):
 
     repoName =repo
     baseUrl='https://raw.githubusercontent.com/'
+    Base_Link = 'https://github.com/'
+
 
     g = Github(username, password)
     repository=g.get_repo(repo)
     
     mycol.insert_one({"Repository":repo})
-
+    url_Link1 = Base_Link + repo +'/blob/'
     branches=repository.get_branches()
     for br in branches:
         
         Branch=br.name
+    
+        
         headCommit=br.commit.sha
         mycol.update({"Repository":repository.full_name},
                     {'$push':{"Branches":{
@@ -71,43 +75,46 @@ def TraverseLOC(username ,password,repo):
 
             #CommitTime
             commitDateTime = com.commit.author.date
-          
-
+            url_Link2 = url_Link1 + com.sha +'/'
+            print(commitDateTime)
+            
             TimeStampStr= commitDateTime.strftime("%Y-%m-%d %H-%M-%S")
             Date = TimeStampStr.split(' ')
             commitKey = com.sha
             tree=repository.get_git_tree(com.sha).tree
-
+    
+            
             for tr in tree:
 
                 try:
-
-                    if(tr.type == "tree"):
-
-                        treeContent=repository.get_contents(tr.path)
-                        print("tree Content"+ treeContent)
-                        # print(treeContent)
-                        while len(treeContent)> 1:
-                            file_content=treeContent.pop(0)
-
-                            if file_content.type =="dir":
-                                    treeContent.extend(repository.get_contents(file_content.path))
-                            else:
-                                    
-                                    rawPath=Avoid_Files(file_content.path,repoName,baseUrl,commitKey)
-                                    if(rawPath != None):
-                                        # print(rawPath)
-                                        r = requests.get(rawPath)
-                               
-                                        ExtFileName = rawPath.split('/')
-                                        File_Extension =(ExtFileName[len(ExtFileName)-1]).split('.')
-                                        LinesOfCode.CalculateLinesofCode(Branch,Date[0],Date[1],File_Extension[1],file_content.path,rawPath,repository.full_name)
-                                        
-                                           
-
-
-                    elif (tr.type == "blob"):
+               
+                    if (tr.type =="tree"):
                         
+                        treeContent=repository.get_contents(tr.path)
+                        while len(treeContent)> 0:
+                            file_content=treeContent.pop(0)
+                            
+                            if file_content.type =="dir":
+                                treeContent.extend(repository.get_contents(file_content.path))
+                            else:
+                                
+
+                                rawPath=Avoid_Files(file_content.path,repoName,baseUrl,commitKey)
+                                if(rawPath != None):
+                                    
+                                    
+                                    r = requests.get(rawPath)
+                               
+                                    ExtFileName = rawPath.split('/')
+                                    File_Extension =(ExtFileName[len(ExtFileName)-1]).split('.')
+                                    SC_Link = url_Link2 +file_content.path
+                                    print(SC_Link)
+                                    LinesOfCode.CalculateLinesofCode(Branch,Date[0],Date[1],File_Extension[1],file_content.path,rawPath,repository.full_name,SC_Link)
+                    
+                    elif (tr.type == "blob"):
+
+    
+
                         # print(tr.path)
                         rawPath=Avoid_Files(tr.path,repoName,baseUrl,commitKey)
 
@@ -118,18 +125,24 @@ def TraverseLOC(username ,password,repo):
                                
                             ExtFileName = rawPath.split('/')
                             File_Extension =(ExtFileName[len(ExtFileName)-1]).split('.')
-                            LinesOfCode.CalculateLinesofCode(Branch,Date[0],Date[1],File_Extension[1],tr.path,rawPath,repository.full_name)
-                            
-                            
-
+                            SC_Link = url_Link2 +tr.path
+                            print(SC_Link)
+                            LinesOfCode.CalculateLinesofCode(Branch,Date[0],Date[1],File_Extension[1],tr.path,rawPath,repository.full_name,SC_Link)
+                    
                     else:
 
-                        pass       
-                        
+                        pass
+                
+                    
 
+
+
+                
 
                 except:
-
-
-                    pass
+                        pass
+                
+                      
+                   
+                    
     return
