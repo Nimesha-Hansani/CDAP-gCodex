@@ -47,6 +47,7 @@ def Avoid_Files(filePath ,rpName ,bUrl,ck):
 
 def TraverseLOC(username ,password,repo):
 
+    print("LOC for" + repo)
     repoName =repo
     baseUrl='https://raw.githubusercontent.com/'
     Base_Link = 'https://github.com/'
@@ -76,7 +77,7 @@ def TraverseLOC(username ,password,repo):
             #CommitTime
             commitDateTime = com.commit.author.date
             url_Link2 = url_Link1 + com.sha +'/'
-            print(commitDateTime)
+            
             
             TimeStampStr= commitDateTime.strftime("%Y-%m-%d %H-%M-%S")
             Date = TimeStampStr.split(' ')
@@ -108,7 +109,7 @@ def TraverseLOC(username ,password,repo):
                                     ExtFileName = rawPath.split('/')
                                     File_Extension =(ExtFileName[len(ExtFileName)-1]).split('.')
                                     SC_Link = url_Link2 +file_content.path
-                                    print(SC_Link)
+                                    
                                     LinesOfCode.CalculateLinesofCode(Branch,Date[0],Date[1],File_Extension[1],file_content.path,rawPath,repository.full_name,SC_Link)
                     
                     elif (tr.type == "blob"):
@@ -126,7 +127,7 @@ def TraverseLOC(username ,password,repo):
                             ExtFileName = rawPath.split('/')
                             File_Extension =(ExtFileName[len(ExtFileName)-1]).split('.')
                             SC_Link = url_Link2 +tr.path
-                            print(SC_Link)
+                            
                             LinesOfCode.CalculateLinesofCode(Branch,Date[0],Date[1],File_Extension[1],tr.path,rawPath,repository.full_name,SC_Link)
                     
                     else:

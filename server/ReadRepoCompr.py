@@ -45,6 +45,7 @@ def Avoid_Files(filePath ,rpName ,bUrl,ck):
 
 def TraverseCompr(username ,password,repo):
 
+    print("Compre for" + repo)
     repoName =repo
     baseUrl='https://raw.githubusercontent.com/'
 
@@ -96,7 +97,7 @@ def TraverseCompr(username ,password,repo):
                                     rawPath=Avoid_Files(file_content.path,repoName,baseUrl,commitKey)
 
                                     if(rawPath != None):
-                                           print(rawPath)
+                                           
                                            r = requests.get(rawPath)
                                
                                            ExtFileName = rawPath.split('/')
@@ -126,4 +127,4 @@ def TraverseCompr(username ,password,repo):
                 except:
 
                     pass
-    return
+    return 

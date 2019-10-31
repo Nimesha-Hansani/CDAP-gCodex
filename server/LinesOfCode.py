@@ -51,7 +51,7 @@ def LinesOfCode(rawPath):
     return [SourceLinesOfCode,fileCommentLineCount,fileLineCount]
 
 def CalculateLinesofCode(BranchName,CommitDate,CommitTime,FileExtension,FilePath,RawPath,Repo,LocLink):
-    print(FilePath) 
+
     if (CommitDate in DateList) and (CommitTime in TimeList):
 
         AttrList = LinesOfCode(RawPath)

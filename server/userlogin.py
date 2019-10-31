@@ -5,6 +5,7 @@ import json
 import ReadRepoLOC
 import ReadRepoCompr
 import ReadRepoHalstead
+import dbfunctions
 
 app = Flask(__name__)
 g = None
@@ -25,7 +26,7 @@ def login():
         g= instance
        
         user =g.get_user()   
-        print(g)
+        
 
         result = user.login
     except:
@@ -82,15 +83,48 @@ def searchByInputs ():
 @app.route('/users/readContents',methods=['GET'])   
 def readContents():
     repo = request.args.get('repo')
-    
-    #ReadRepoHalstead.TraverseHalstead(UNM,PSW,repo)
-    ReadRepoLOC.TraverseLOC(UNM ,PSW,repo)
-    # ReadRepoCompr.TraverseCompr(UNM,PSW,repo)
-    
-    
-    
-    return jsonify(Success = repo)
+    print(repo)
+    try:
+        # ReadRepoHalstead.TraverseHalstead(UNM,PSW,repo)
+        # ReadRepoLOC.TraverseLOC(UNM ,PSW,repo)
+        #ReadRepoCompr.TraverseCompr(UNM,PSW,repo)
+        
+        # data = dbfunctions.rtrComprehension(repo)
 
+        return jsonify(success= True)
+
+    except Exception as e:
+        
+        # print(getattr(e, 'message', str(e)))
+        print(e.status)
+
+        return jsonify(success = False)
+
+
+
+@app.route('/users/comprehension',methods=['GET'])   
+def comprehension():
+    repo = request.args.get('repo')
+    print(repo)
+    try:
+        # ReadRepoHalstead.TraverseHalstead(UNM,PSW,repo)
+        # ReadRepoLOC.TraverseLOC(UNM ,PSW,repo)
+        ReadRepoCompr.TraverseCompr(UNM,PSW,repo)
+        data = dbfunctions.rtrComprehension(repo)
+
+        return data
+
+    except Exception as e:
+        
+        # print(getattr(e, 'message', str(e)))
+        print(e)
+        return jsonify(success = False)
+
+
+    
+    
+    
+    
 # @app.route('/user/forecasting',methods='GET')
 # def forecasting():
 
@@ -99,4 +133,5 @@ def readContents():
 
 
 if __name__ == "__main__":
+    # app.run(host='192.168.1.100',port=5000)
     app.run()

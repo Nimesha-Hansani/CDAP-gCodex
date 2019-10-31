@@ -44,6 +44,7 @@ def Avoid_Files(filePath ,rpName ,bUrl,ck):
 
 def TraverseHalstead(username ,password,repo):
 
+    print("Halstead for"+repo)
     repoName =repo
     baseUrl='https://raw.githubusercontent.com/'
 
@@ -62,7 +63,7 @@ def TraverseHalstead(username ,password,repo):
                     {'$push':{"Branches":{
                               "Branch":Branch
                     }}})
-        print("Branch Inserted")
+        
         # print("This is  branch commit : " +headCommit)
         commits = repository.get_commits(headCommit)
 
