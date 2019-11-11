@@ -6,6 +6,8 @@ import ReadRepoLOC
 import ReadRepoCompr
 import ReadRepoHalstead
 import dbfunctions
+import Prediction
+
 
 app = Flask(__name__)
 g = None
@@ -85,53 +87,78 @@ def readContents():
     repo = request.args.get('repo')
     print(repo)
     try:
-        # ReadRepoHalstead.TraverseHalstead(UNM,PSW,repo)
+    
+        # dbfunctions.deleteLinesofCode()
         # ReadRepoLOC.TraverseLOC(UNM ,PSW,repo)
-        #ReadRepoCompr.TraverseCompr(UNM,PSW,repo)
         
-        # data = dbfunctions.rtrComprehension(repo)
+        print("Done")
+        data = dbfunctions.returnLOCdata()
+        return data
 
-        return jsonify(success= True)
 
     except Exception as e:
         
-        # print(getattr(e, 'message', str(e)))
         print(e.status)
 
         return jsonify(success = False)
 
 
 
-@app.route('/users/comprehension',methods=['GET'])   
-def comprehension():
+@app.route('/users/halstead',methods=['GET'])
+def halstead():
+    
     repo = request.args.get('repo')
     print(repo)
     try:
+        
+        # dbfunctions.deleteHalstead()
         # ReadRepoHalstead.TraverseHalstead(UNM,PSW,repo)
-        # ReadRepoLOC.TraverseLOC(UNM ,PSW,repo)
-        ReadRepoCompr.TraverseCompr(UNM,PSW,repo)
-        data = dbfunctions.rtrComprehension(repo)
+        datalist=dbfunctions.returnHalsteaddata()
+        print(datalist)
+        return datalist
+    
+    except Exception as e:
+        
+        print(e)
 
-        return data
+
+@app.route('/users/comprehension',methods=['GET'])  
+def comprehension():
+    
+    try:
+        repo = request.args.get('repo')
+        print("comprehension "+repo)
+        dbfunctions.deleteCompr()
+        ReadRepoCompr.TraverseCompr(UNM,PSW,repo)
+        return jsonify(success = True)
+
+
 
     except Exception as e:
         
-        # print(getattr(e, 'message', str(e)))
         print(e)
         return jsonify(success = False)
 
+@app.route('/users/forcasting',methods=['GET'])  
+def forcasting():
+    try:
+        
+        repo = request.args.get('repo')
+        print(repo)
+        Prediction.forcastingComprehension(repo)
+
+        
+        return jsonify(success = True)
+
+
+    except Exception as e:
+        print(e)
+        return jsonify(success = False)
 
     
-    
-    
-    
-# @app.route('/user/forecasting',methods='GET')
-# def forecasting():
+
 
        
-
-
-
 if __name__ == "__main__":
-    # app.run(host='192.168.1.100',port=5000)
-    app.run()
+    app.run(host='192.168.8.107',port=5000)
+    #  app.run()

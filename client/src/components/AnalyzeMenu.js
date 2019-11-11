@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
+import RepoStructure from '../Graphs/RepoStructure';
+import Comprehension from '../Graphs/CognativeLine';
 
-import { TabContent, TabPane, Nav, NavItem, NavLink, Row, Col, Spinner } from 'reactstrap';
-import classnames from 'classnames';
+import {Nav, NavItem, NavLink, Row, Spinner } from 'reactstrap';
 
 
 import {comprehension} from '../actions/actions';
@@ -14,22 +15,21 @@ var ls = require('local-storage');
 class AnalyzeMenu extends Component {
 
     state = {
-        activeTab: '1',
+        activeTab: 'repo_structure',
         comp: false
     }
 
 
-    toggle = tab => {
-      if(this.state.activeTab !== tab){
-       this.setState({activeTab: tab});
+      repoStructureMethod = (id) =>{
+        this.setState({activeTab: id})
       }
-    }
 
+      complexityMethod = (id) =>{
+        this.setState({activeTab: id})
+      }
 
-    selectRepoForComprehension = async (tab) =>{
-        if(this.state.activeTab !== tab){
-            this.setState({activeTab: tab});
-        }
+      comprehensionMethod = (id) =>{
+        this.setState({activeTab: id})
 
         if(this.state.comp === false){
             this.props.comprehension(ls.get('repoName')).then(res => {
@@ -39,113 +39,87 @@ class AnalyzeMenu extends Component {
         }
 
       }
-    
+
+      predictionMethod = (id) =>{
+        this.setState({activeTab: id})
+      }
+
+      bugsMethod = (id) =>{
+        this.setState({activeTab: id})
+      }
 
     render() {
         return (
             <div>
-                <Nav tabs>
-
+                <Nav pills style={{marginTop: '20px'}}>
                     <NavItem className="menu_nav">
-                    <NavLink
-                        className={classnames({ active: this.state.activeTab === '1' })}
-                        onClick={() => { this.toggle('1'); }}>
-                        Repo Structure
-                    </NavLink>
+                        <NavLink className={this.state.activeTab === 'repo_structure'? 'active': ' '} onClick={()=>this.repoStructureMethod('repo_structure')}>Repo Structure</NavLink>
                     </NavItem>
 
                     <NavItem className="menu_nav">
-                    <NavLink
-                        className={classnames({ active: this.state.activeTab === '2' })}
-                        onClick={() => { this.toggle('2'); }}>
-                        Complexity
-                    </NavLink>
+                    <NavLink  className={this.state.activeTab === 'complexity'? 'active': ' '} onClick={()=>this.complexityMethod('complexity')}>Complexity</NavLink>
+                    </NavItem>
+
+                    <NavItem className="menu_nav"> 
+                    <NavLink  className={this.state.activeTab === 'comprehension'? 'active': ' '} onClick={()=>this.comprehensionMethod('comprehension')}>Comprehension</NavLink>
                     </NavItem>
 
                     <NavItem className="menu_nav">
-                    <NavLink
-                        className={classnames({ active: this.state.activeTab === '3' })}
-                        onClick={() => { this.selectRepoForComprehension('3'); }}>
-                        Comprehension
-                    </NavLink>
+                    <NavLink  className={this.state.activeTab === 'prediction'? 'active': ' '} onClick={()=>this.predictionMethod('prediction')}>Prediction</NavLink>
                     </NavItem>
 
                     <NavItem className="menu_nav">
-                    <NavLink
-                        className={classnames({ active: this.state.activeTab === '4' })}
-                        onClick={() => { this.toggle('4'); }}>
-                        Prediction
-                    </NavLink>
+                    <NavLink  className={this.state.activeTab === 'bugs'? 'active': ' '} onClick={()=>this.bugsMethod('bugs')}>Bugs</NavLink>
                     </NavItem>
-
-                    <NavItem className="menu_nav">
-                    <NavLink
-                        className={classnames({ active: this.state.activeTab === '5' })}
-                        onClick={() => { this.toggle('5'); }}>
-                        Bugs
-                    </NavLink>
-                    </NavItem>
-
-                    </Nav>
-
-
-
-                    <TabContent activeTab={this.state.activeTab} style={{marginTop: '50px'}}>
-
-                    <TabPane tabId="1">
-                    <Row>
-                        <Col sm="12">
-                        <h4>Repo Structure</h4>
-
-                        {(this.props.analyze.loading === true) ?
-                        <Row><Spinner color="primary" /> <p>{` ${ls.get('repoName')} is analyzing..`}</p></Row>
-                        : null}
-
-
-                        </Col>
-                    </Row>
-                    </TabPane>
-
-                    <TabPane tabId="2">
-                    <Row>
-                        <Col sm="12">
-                        <h4>Complexity</h4>
-                        </Col>
-                    </Row>
-                    </TabPane>
-
-                    <TabPane tabId="3">
-                    <Row>
-                        <Col sm="12">
-                        <h4>Comprehension</h4>
-
-                        {(this.props.comp.loading === true) ?
-                        <Row><Spinner color="primary" /> <p>{` ${ls.get('repoName')} is analyzing..`}</p></Row>
-                        : null}
-
-
-                        </Col>
-                    </Row>
-                    </TabPane>
-
-                    <TabPane tabId="4">
-                    <Row>
-                        <Col sm="12">
-                        <h4>Prediction</h4>
-                        </Col>
-                    </Row>
-                    </TabPane>
-
-                    <TabPane tabId="5">
-                    <Row>
-                        <Col sm="12">
-                        <h4>Bugs</h4>
-                        </Col>
-                    </Row>
-                    </TabPane>
-
-                    </TabContent>
                 
+                </Nav>
+      
+            {(this.state.activeTab === 'repo_structure')?
+
+                <div style={{marginTop: '50px', marginBottom: '100px'}}>
+
+                    {(this.props.analyze.loading === true)? 
+                    <Row style={{marginTop: '100px', marginLeft: '150px', position: 'absolute'}} >
+                        <Spinner color="primary" style={{ width: '3rem', height: '3rem', marginRight: '50px' }}/> <h3 style={{marginTop: '5px'}}>Analyzing...</h3>
+                    </Row>
+                    
+                    
+                    : (this.props.analyze.analyze.success === false)? 
+                    <h3 style={{marginTop: '100px', marginLeft: '150px', position: 'absolute'}}>Please try again later in few minutes...</h3>
+                    
+                    :  <RepoStructure/>}
+
+                </div>
+
+            : 
+            (this.state.activeTab === 'comprehension')?
+            
+                <div style={{marginTop: '50px', marginBottom: '100px'}}>
+                        {(this.props.comp.loading === true)? 
+                        <Row style={{marginTop: '100px', marginLeft: '150px', position: 'absolute'}} >
+                            <Spinner color="primary" style={{ width: '3rem', height: '3rem', marginRight: '50px' }}/> <h3 style={{marginTop: '5px'}}>Analyzing...</h3>
+                        </Row>
+                        
+                        
+                        : (this.props.analyze.analyze.success === false)? 
+                            <h3 style={{marginTop: '100px', marginLeft: '150px', position: 'absolute'}}>Please try again later in few minutes...</h3>
+                        
+                        :  <Comprehension/>}
+                </div>
+                    
+            
+            : null}
+               
+             
+
+
+
+
+                
+
+
+
+
             </div>
         )
     }

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 import AnalyzeMenu from '../components/AnalyzeMenu';
 
-import {login, loadSitePage, searching, comprehension, analyzing} from '../actions/actions';
+import {login, loadSitePage, searching, comprehension, analyzing, signout} from '../actions/actions';
 import {
     Navbar,Container,NavbarBrand,NavLink,NavItem,Nav,Row,
     Col,Button,Form,FormGroup,Input,
@@ -29,6 +29,10 @@ class UserMenu extends Component {
   signOut = () => {
     localStorage.removeItem('state');
     this.props.history.push("/");
+
+    // this.props.signout().then(res =>{
+    // this.props.history.push("/");
+    // })
   }
 
   setSearch = (event) =>{
@@ -48,14 +52,14 @@ class UserMenu extends Component {
 
 
 
-  selectRepoforAnalyze = async (event) =>{
+  selectRepoforAnalyze = (event) =>{
     this.setState({repoName: event.target.value});
     ls.set('repoName', event.target.value);
 
     this.props.analyzing(event.target.value).then(res => {
-      console.log(this.props.analyze.analyze);
+      console.log(this.props.analyze.analyze[0]);
     })
-
+ 
   }
 
   
@@ -200,4 +204,4 @@ const mapStateToProps = state => ({
   comp:  state.comp
 });
 
-export default connect(mapStateToProps, {login, loadSitePage, searching, comprehension, analyzing})(UserMenu);
+export default connect(mapStateToProps, {login, loadSitePage, searching, comprehension, analyzing, signout})(UserMenu);

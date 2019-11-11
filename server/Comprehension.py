@@ -174,7 +174,7 @@ def CalculateComprehension(BranchName,CommitDate,CommitTime,FileExtension,FilePa
 
         DateList.append(CommitDate)
         TimeList.append(CommitTime)
-
+        print("Commit Date" + CommitDate)
         mycol.update_many({"Repository":Repo,
                           "Branches":{'$elemMatch':{"Branch":BranchName}}},
                           {'$push':{"Branches.$.Commits":{

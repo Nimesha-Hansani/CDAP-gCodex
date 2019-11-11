@@ -12,8 +12,6 @@ from pymongo import InsertOne
 import datetime
 import sys
 import os, os.path
-import ReadRepoHalstead
-
 import Halstead
 
 #DB Connection to the LinesofCode value collection
@@ -44,13 +42,13 @@ def Avoid_Files(filePath ,rpName ,bUrl,ck):
 
 def TraverseHalstead(username ,password,repo):
 
-    print("Halstead for"+repo)
+    print("Halstead for "+repo)
     repoName =repo
     baseUrl='https://raw.githubusercontent.com/'
 
     g = Github(username, password)
     repository=g.get_repo(repo)
-    
+    # 
     mycol.insert_one({"Repository":repo})
     user =g.get_user()
     branches=repository.get_branches()

@@ -55,7 +55,7 @@ def CalculateLinesofCode(BranchName,CommitDate,CommitTime,FileExtension,FilePath
     if (CommitDate in DateList) and (CommitTime in TimeList):
 
         AttrList = LinesOfCode(RawPath)
-
+        print("File Path " + FilePath)
         mycol.update_many({"Repository":Repo,
                   "Branches":{'$elemMatch':{
                    "Branch":BranchName ,"Commits.Commit Date":CommitDate,"Commits.Commit Time":CommitTime}}},
@@ -88,9 +88,9 @@ def CalculateLinesofCode(BranchName,CommitDate,CommitTime,FileExtension,FilePath
                                   "Commit Date":CommitDate,
                                   "Commit Time":CommitTime
                            }}})
-        
+        print(CommitDate+" Inserted")
         AttrList = LinesOfCode(RawPath)
-    
+        print("File Path " + FilePath)
         mycol.update_many({"Repository":Repo,
                   "Branches":{'$elemMatch':{
                    "Branch":BranchName ,"Commits.Commit Date":CommitDate,"Commits.Commit Time":CommitTime}}},
@@ -111,5 +111,6 @@ def CalculateLinesofCode(BranchName,CommitDate,CommitTime,FileExtension,FilePath
                                  ]
                
                )
+    
 
        

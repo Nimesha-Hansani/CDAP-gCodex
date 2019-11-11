@@ -12,6 +12,18 @@ export const login = user => {
     )
 }
 
+export const signout = () => {
+    return axios
+    .post('/users/signout') 
+    .then(res => {
+        return res.data;
+    }
+    )
+}
+
+
+
+
 export const loadSitePage = () => dispatch => {
     dispatch(setItemsLoading());
     return axios
@@ -55,7 +67,6 @@ export const comprehension = (repo_name) => async dispatch => {
         payload: res.data
     }))
 };
-
 
 
 

@@ -75,11 +75,11 @@ def Halstead(rawPath):
     N = N1+N2
     n = n1+n2
     V = (N1 + N2) * log2(n1 + n2)
-    D =  n1 * N2 / 2 / n2
+    D =  (n1/2.0) * (N2/n2)
     E = D * V
     T =  E / (18)
 
-    val = {"N": N1 + N2, "n": n1 + n2, "V": (N1 + N2) * log2(n1 + n2), "D": n1 * N2 / 2 / n2}
+    val = {"N": N1 + N2, "n": n1 + n2, "V": (N1 + N2) * log2(n1 + n2), "D": (n1/2.0) * (N2/n2)}
     val['E'] = val['D'] * val['V']
     #val['L'] = val['V'] / val['D'] / val['D']
     # val['I'] = val['V'] / val['D']

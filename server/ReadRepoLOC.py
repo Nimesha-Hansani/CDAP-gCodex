@@ -62,14 +62,12 @@ def TraverseLOC(username ,password,repo):
     for br in branches:
         
         Branch=br.name
-    
-        
         headCommit=br.commit.sha
         mycol.update({"Repository":repository.full_name},
                     {'$push':{"Branches":{
                               "Branch":Branch
                     }}})
-    
+        print(Branch+"Inserted")
         commits = repository.get_commits(headCommit)
         
         for com in commits:
@@ -77,8 +75,6 @@ def TraverseLOC(username ,password,repo):
             #CommitTime
             commitDateTime = com.commit.author.date
             url_Link2 = url_Link1 + com.sha +'/'
-            
-            
             TimeStampStr= commitDateTime.strftime("%Y-%m-%d %H-%M-%S")
             Date = TimeStampStr.split(' ')
             commitKey = com.sha

@@ -14,6 +14,7 @@
 li.menu_nav.nav-item {
     padding-left: 0px;
     padding-right: 0px;
+    cursor: pointer;
 }
 
 .MainPageHitTitle {
@@ -109,3 +110,136 @@ button#DB.btn.btn-outline-info{
     overflow-y: scroll;
     height: 300px;
 }
+
+
+
+
+
+ /* D3 styles: repo stucture, tree map */
+ 
+       
+
+        #chart {
+            background: #fff;
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        }
+
+        .title {
+            font-weight: bold;
+            font-size: 24px;
+            text-align: center;
+            margin-top: 40px;
+            margin-bottom: 6px;
+        }
+
+        text {
+            pointer-events: none;
+        }
+
+        .grandparent text {
+            font-weight: bold;
+        }
+
+        rect {
+            fill: none;
+            stroke: white;
+        }
+
+        rect.parent,
+        .grandparent rect {
+            stroke-width: 2px;
+        }
+
+        rect.parent {
+            pointer-events: none;
+        }
+
+        .grandparent rect {
+            fill: orange;
+        }
+
+        .grandparent:hover rect {
+            fill: #ee9700;
+        }
+
+        .children rect.parent,
+        .grandparent rect {
+            cursor: pointer;
+        }
+
+        .children rect.parent {
+            fill: #bbb;
+            fill-opacity: 0.9;
+        }
+
+        .children:hover rect.child {
+            fill: #bbb;
+        }
+
+
+/* Cognative line */
+
+
+path {
+    stroke: #ccc;
+    stroke-width: 2;
+    fill: none;
+  }
+
+  .axis path,
+  .axis line {
+    fill: none;
+    stroke: grey;
+    stroke-width: 1;
+    shape-rendering: crispEdges;
+  }
+
+  #legendContainer {
+    position: absolute;
+    top: 60px;
+    left: 10px;
+    overflow: auto;
+    height: 490px;
+    width: 110px;
+  }
+
+  #legend {
+    width: 90px;
+    height: 200px;
+  }
+
+  .legend {
+    font-size: 12px;
+    font-weight: normal;
+    text-anchor: left;
+  }
+
+  .legendcheckbox {
+    cursor: pointer;
+  }
+
+  #showAll {
+    position: absolute;
+    top: 600px;
+    left: 880px;
+  }
+
+  #clearAll {
+    position: absolute;
+    top: 600px;
+    left: 950px;
+  }
+
+  /* input {
+    border-radius: 5px;
+    padding: 5px 10px;
+    background: #999;
+    border: 0;
+    color: #fff;
+  } */
+
+  #inds {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+  }

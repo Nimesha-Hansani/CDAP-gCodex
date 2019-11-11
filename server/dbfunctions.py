@@ -13,32 +13,44 @@ Compr = Database.cognitiveValues
 LOC = Database.LinesOfCode
 Halstead = Database.Halstead
 
-#Retreive cognitiveValus data from Mongo DB
-def rtrComprehension (repo):
+def deleteCompr():
+    Compr.delete_many({})
+    return None
 
-    dataList = dumps(Compr.find({ 'Repository' : repo}))
+def deleteHalstead():
+
+    Halstead.delete_many({})
+
+    return None
+
+def deleteLinesofCode():
+
+    LOC.delete_many({})
+
+    return None
+
+def returnHalsteaddata():
     
-
+    dataList =dumps(Halstead.find())
+    print(dataList)
     return dataList
 
-#Retreive LinesOfCode data from Mongo DB
-def rtrLinesofCode (repo):
-
-    dataList = dumps(LOC.find({'Repository':repo}))
 
 
-#Retreive Halstead data from Mongo DB
-def rtrHalstead (repo):
 
-    dataList = dumps(Halstead.find({'Repository':repo}))
+#Return Lines of Code Data
+def returnLOCdata():
+    
+    
+    dataList =dumps(LOC.find())
+    print(dataList)
+    return dataList
+def returnHalsteaddata():
+    
+    dataList =dumps(Halstead.find())
+    print(dataList)
+    return dataList
 
-
-#Delete all collection from Mongo DB
-def deleteCollections ():
-
-    Compr.delete_many({})
-    LOC.delete_many({})
-    Halstead.delete_many({})
 
 
 
