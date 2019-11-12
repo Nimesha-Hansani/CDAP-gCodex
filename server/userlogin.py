@@ -7,6 +7,8 @@ import ReadRepoCompr
 import ReadRepoHalstead
 import dbfunctions
 import Prediction
+from pymongo import MongoClient
+import pymongo
 
 
 app = Flask(__name__)
@@ -92,12 +94,34 @@ def readContents():
     
         # dbfunctions.deleteLinesofCode()
         # ReadRepoLOC.TraverseLOC(UNM ,PSW,repo)
-        
-        print("Done")
-        data = dbfunctions.returnLOCdata()
-        print(data)
-        return data
 
+        connection = MongoClient('localhost',27017)
+        Database = connection.gCodexDB
+        data1 =Database.LinesOfCode
+        data2 = Database.Halstead
+        data3 = Database.cognitiveValues
+
+        dataList = data1.find({'Repository':repo})
+
+        if (dataList.count() == 0):
+
+            data1.delete_many({})
+            data2.delete_many({})
+            data3.delete_many({})
+            ReadRepoLOC.TraverseLOC(UNM,PSW,repo)
+            ReadRepoCompr.TraverseCompr(UNM,PSW,repo)
+            ReadRepoHalstead.TraverseHalstead(UNM,PSW,repo)
+            locdata=dbfunctions.returnLOCdata()
+            return locdata
+        else :
+            locdata=dbfunctions.returnLOCdata()
+            return locdata
+
+
+             
+              
+    
+        
 
     except Exception as e:
         
@@ -114,8 +138,7 @@ def halstead():
     print(repo)
     try:
         
-        # dbfunctions.deleteHalstead()
-        # ReadRepoHalstead.TraverseHalstead(UNM,PSW,repo)
+       
         datalist=dbfunctions.returnHalsteaddata()
         print(datalist)
         return datalist
@@ -131,11 +154,10 @@ def comprehension():
     print(repo)
     try:
     
-        dbfunctions.deleteCompr()
-        ReadRepoCompr.TraverseCompr(UNM,PSW,repo)
+     
         datalist=dbfunctions.returnComprdata()
         return datalist
-
+        
 
     except Exception as e:
         

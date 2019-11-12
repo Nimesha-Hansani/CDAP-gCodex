@@ -66,7 +66,7 @@ def TraverseCompr(username ,password,repo):
         print(Branch + "Inserted")
         
         commits = repository.get_commits(headCommit)
-
+    
         for com in commits:
 
             #CommitTime
@@ -129,4 +129,4 @@ def TraverseCompr(username ,password,repo):
                 except:
 
                     pass
-    return 
+    return None
