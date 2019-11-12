@@ -10,7 +10,8 @@ import Prediction
 from pymongo import MongoClient
 import pymongo
 import commited
-
+import requests
+import clustering
 
 app = Flask(__name__)
 g = None
@@ -186,14 +187,39 @@ def defects():
         
         repo = request.args.get('repo')
         commits =commited.topCommitters(UNM,PSW,repo)
-
-        commited.issueCloud(UNM,PSW,repo)
+        sd = clustering.defectsClustering(UNM,PSW,repo)
+        
         status = commited.defectstatus()
-
-
-        data = json.dumps({'commit': commits, 'status': status})
+        data = json.dumps({'commit': commits, 'status': status, 'html': sd})
 
         return data
+       
+        # return jsonify(success = False)
+
+
+    except Exception as e:
+        print(e)
+        return jsonify(success = False)
+
+@app.route('/users/wordcloud',methods=['GET'])
+def wordcloud():
+    try:
+        # img =commited.issueCloud(UNM,PSW,repo)
+        img = open('wordcloud.png', 'rb').read()
+        response = requests.post('http://192.168.8.100:5000/wordcloud.png')
+
+        return response
+    except Exception as e:
+        print(e)
+        return jsonify(success = False)
+
+@app.route('/users/clust',methods=['GET'])  
+def clust():
+    try:
+        print("Clust repo")
+        repo = request.args.get('repo')
+        
+        #return jsonify(html = ad)
        
         # return jsonify(success = False)
 

@@ -107,7 +107,8 @@ def issueCloud(username,password,repo):
     plt.imshow(wordcloud)
     plt.savefig('wordcloud.png')
     print ("iMAGE sAVED")
-    return None
+    img = open('wordcloud.png', 'rb').read()
+    return img
 
 
 def defectstatus():

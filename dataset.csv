@@ -1,0 +1,1002 @@
+Issue,index
+Add code example for beforeExit event,0
+doc: provide an example to fs.stat(),1
+test: duplicated buffer in test-stream2-writable.js,2
+doc: clearify that http does chunked encoding itself.,3
+doc: add example of event close for child_process,4
+doc: added an example for crypto class decipher,5
+doc: add example about emitter.emit in events documentation,6
+doc: add example for cipher.update(),7
+test: change the repeat Buffer.from('blerg'); statments,8
+refactor test-fs-write-sync,9
+handle calling terminate on a worker when kHandler is null,10
+"doc, events: Add a code example for the removeAllListeners method",11
+test: fix order of assertion arguments in test-event-emitter-num-args,12
+Add code example buf.readBigUInt64BE and buf.readBigUInt64LE,13
+Add documention to Cluster,14
+Add example to fs docs,15
+doc: cipher.setAADA code example,16
+vm: increase code coverage of source_text_module.js,17
+doc: add example function isDead to cluster,18
+doc: add example for Buffer.isEncoding,19
+test: fix order of assertion arguments in test-buffer-indexof,20
+test: update test-require-json.js,21
+dgram: changed 'var' to 'let' and 'const',22
+switch the argument order for the assertion,23
+Improve coverage for assert.ok,24
+doc:add example function to fs.existsSync,25
+Test refactor,26
+doc: add examples to fs truncate and fs truncateSync,27
+Test fix description,28
+vm: increase code coverage of source_text_module.js,29
+test: refactor test-buffer-failed-alloc-type,30
+doc: Update os.getCIDR docs,31
+test: refactor test using assert instead of try/catch,32
+test: fixing broken test,33
+"test: refactoring test, reordering arguments",34
+Refactor test to eliminate duplicate statements,35
+test: switch the param order in the assertion,36
+test: tsl switch arguments order for the assertion,37
+test/Switch-the-argument,38
+lib: fix stack overflow check to not break on primitives,39
+Intermittent timeouts in test-tls-min-max-version.js ,40
+doc: fix sentence about Http2Stream destruction,41
+crypto: extend RSA-OAEP support with oaepHash,42
+es6 modules --experimental-modules,43
+"src: readlink(""/proc/self/exe"") -> uv_exename()",44
+Worker Thread: how to get per-worker cpu & memory util rate?,45
+src: large pages option: FreeBSD support proposal,46
+doc: remove N-API version for Experimental APIs,47
+"doc: remove ""note that"" from docs",48
+doc: fix typo in process.disconnect() docs,49
+doc: drop 'Note that' in addons docs,50
+doc: remove obsolete external link,51
+child_process: attach child in promisification,52
+Windows 10 npm -v error,53
+src: fix type name in comment,54
+crypto: move _scrypt call out of handleError funct,55
+executionAsyncId in unhandledRejection and rejectionHandled is always 0,56
+test: remove test-ttywrap.writestream,57
+doc: revise assert legacy mode text,58
+doc: make multipleResolves docs less opinionated,59
+domain: use strong reference to domain while active,60
+test: do not use fixed port in async-hooks/test-httparser-reuse,61
+./configure --enable-vtune-profiling doesn't work.,62
+doc: format ECMA-262 with a hyphen,63
+process: split routines used to enhance fatal exception stack traces,64
+test: permit test-signalwrap to work without test runner,65
+test-ttywrap.writestream.js test always passes,66
+n-api: add error message for date expected,67
+[v8.x] n-api: implement date object,68
+[v10.x] n-api: implement date object,69
+[v10.x] test: clean up build files,70
+[v8.x] n-api: add generic finalizer callback,71
+test: add a n-api external test,72
+node-tap failing on master,73
+Local DNS resolution sometimes fails,74
+test: use regex for OpenSSL function name,75
+The 'OCSPRequest' callback does not send the OCSP response with TLS 1.3,76
+Error stack trace sent to the inspector contains ANSI escape codes,77
+v8 Coverage for integrators,78
+"doc: esm add example how to create  __filename, __dirname",79
+os.homedir() doesn't respect setuid,80
+Particular TLS v1.2 cipher suite support,81
+ parallel/test-domain-error-types can crash if GC timings get unlucky,82
+wip: test: fix flaky test-statwatcher.js,83
+readline: fix position computation,84
+util: change inspect's default depth to 4,85
+v12.5.0 proposal,86
+http2: sessionError vs aborted,87
+doc: Updating Table of Content in Building.md,88
+assert: provide extra context in case of failed error validation checks,89
+bootstrap: --frozen-intrinsics override workaround,90
+test: improve test-async-hooks-http-parser-destroy,91
+Make it possible to give externals names/util.inspect.custom,92
+doc: add documentation for invalid byte sequences,93
+connections destroyed under load,94
+doc: apply minor improvements to MDN link in assert,95
+Get the child from promisified `childProcess.execFile`,96
+Fix node.js terminal input functionality,97
+process: freeze process.features,98
+n-api: support type-tagging objects,99
+"IncomingMessage and OutgoingMessage's destroy ignores the second argument callback, swallowing the error",100
+inspector: added --inspect-publish-uid-ipc-path argument,101
+[v8.x] Update openssl 1.0.2s,102
+[v10.x-backport] src: extract common Bind method,103
+http2.connect's listener Parameter is Not Explained in The Documentation,104
+http2.connect is Not Accepting IPv6 Addresses,105
+Http2Server.prototype.close Does Not Work as Expected,106
+[v10.x] update openssl to 1.1.1c,107
+lib: port rimraf to core as shutil.rmtree,108
+Node 12 uses ~30% extra memory,109
+N-API should allow setting the 'length' property of functions,110
+N-API: Expose v8::Object::GetIdentityHash,111
+stream: Readable iterator unhandled error when piping,112
+timers: fix refresh did not call active to make the node exit early.,113
+TextDecoder can't use `latin1` without full-icu,114
+code cleanup,115
+http2.connect(...) - overriding authority with options,116
+build: Re-enable openssl asm for arm64,117
+http2: add constant to already destructured constants,118
+tools: update eslint to latest,119
+http: response does not emit error on premature close,120
+fs: implement fs.rmdir recurisve,121
+timer: timeout.refresh() cannot be reactivated the timer when call unref,122
+tls.connect Error: self signed certificate when connect to imap.gmail.com:933,123
+N-API: Type safety for napi_get_value_external/napi_unwrap,124
+Experimental module resolution inconsistency between --eval and file,125
+doc: use named import and Set for builtinModules,126
+Windows CI failures,127
+fixes typos,128
+v12.4.0,129
+Stream async iteration breaks with derived streams,130
+doc: add example for zlib.createGzip(),131
+lib: remove unnecessary bind,132
+test: move the corresponding IPv4 and IPv6 tests,133
+Date#toLocaleString output changed to 12h in 10.16.0,134
+Transition from __dirname to import.meta.url could be better documented,135
+Investigate flaky parallel/test-async-hooks-http-parser-destroy on OS X,136
+Investigate flaky parallel/test-tls-passphrase on OS X,137
+build: more portable Makefile,138
+intl: configure default locale,139
+test: set LC_ALL to known good value,140
+doc: add examples at assert.strictEqual,141
+Buffer.prototype.slice is incompatible with Uint8Array.prototype.slice; it's documented but tends to cause bugs,142
+doc: no example using message on assert.strictEqual,143
+lib: replace var with let,144
+doc: zlib createGzip doesn't provide an example of usage.,145
+doc: add unrepresented flags docs for `configure`,146
+Memory leak version 10.16.0,147
+Vendor official NPM modules,148
+esm modules documentation doesn't describe how to implement a module,149
+OpenSSL dlloads node static linked executable,150
+"http2,doc: minor fixes",151
+src: read break_node_first_line from the inspect options,152
+worker: prevent event loop starvation through MessagePorts,153
+process: expose uv_rusage on process.resourceUsage(),154
+deps: update V8 to 7.6,155
+missing error.path at fs.mkdir callback on last call,156
+Incomplete stacktrace when `await new Promise(...)` is present,157
+assert: make *deepEqual() aliases for *deepStrictEqual(),158
+http compat: headersSent,159
+http2: use getter replace use directly _witableState.finished,160
+process: disallow some uses of Object.defineProperty() on process.env,161
+http: bytesWritten for http/1 and compat,162
+http compat won't always call callback on end method,163
+[v8.x backport] stream: ensure writable.destroy() emits error once,164
+worker_threads memory leak,165
+Any breakpoint in a native js file sets multiple breakpoints in other native js files,166
+events: add EventEmitter.on to async iterate over events,167
+Cannot delete property from process.env,168
+stream: add bytesRead to Readable,169
+[v10.x] async_hooks: avoid double-destroy HTTPParser,170
+http: don't emit end after aborted,171
+IncomingMessage will emit `end` after `aborted`,172
+[WIP] experimental fetch,173
+src: export v8.GetHeapCodeAndMetadataStatistics(),174
+events: support EventTarget in `once`,175
+util: add node.telemetry trace event category,176
+net: replace _writableState with finished(),177
+completed secure-pair performance test with clear connections,178
+Clear sockets perform worse than TLS socket in some cases,179
+[v10.x] backport more TLS changes,180
+10.16 introduce error: double free or corruption (fasttop): 0x00007fb2ac000b60,181
+[v10.x] tls: support TLS min/max protocol defaults in CLI,182
+"[10.x] http, http2: flag for overriding server timeout",183
+Illegal continue statement - wrong stack trace with async/await calls,184
+Cosmetic: Start menu item installed by Node 12 uses old/outdated node icon,185
+Significant map/reduce performance regression in node 12,186
+src: reduced env.h and env-inl.h include lines and added forward declarations of class Environment where necessary.,187
+build: improve build performance,188
+Expose and write headers on 1xx intermediate status codes,189
+ECONNRESET after response,190
+Cover switch edge cases,191
+module: increase code coverage of cjs loader,192
+test: add test cases for cluster profiling,193
+inspector: remove remainingCallbacks because code is synchronous,194
+lib: remove unneeded code in stream.js,195
+No content length on DELETE and OPTIONS,196
+ClientRequest._deferToConnect doesn't wait until connected,197
+fs.watch(): reports delete of file as change instead of rename,198
+events: implement autocatch for async handlers,199
+dgram: append actual errors to ERR_SOCKET_CANNOT_SEND,200
+Feature Request: can continuous call readline.question ,201
+test: fixtures key/certs cause failures when openssl security level > 1,202
+REPL: `{} instanceof Object === false` with nodejs 11 and nodejs 12 ,203
+[Feature request] Add node-report to cdp and add Visual Panel like React or Vue,204
+test-process-env-tz fails,205
+add experimental wasi module support on top of wasm modules,206
+"Async Iterable `EventEmitter.on(emitter, ""event"")`",207
+"ESM: working on 10.15.2, fails on 10.15.3?",208
+tty: add color support for mosh,209
+tls: allow client-side sockets to be half-opened,210
+build: expose napi_build_version variable to native addons,211
+12.3.0 introduces a breaking change in the way require.resolve's options.paths is validated,212
+Unsupported certificate purpose error with nodejs 10,213
+[Documentation Suggestion] How To Contribute To Unit Tests,214
+[Internal] Track cpp deprecation with date.,215
+Suggestion For Contributing.md,216
+Suggestion for revision to building.md,217
+esm: utility method for detecting ES module syntax,218
+doc: update issues.md (gendermag),219
+Node.JS installation ended prematurely [Windows 7],220
+os: add constrainedmem(),221
+FATAL ERROR: Ineffective mark-compacts near heap limit Allocation failed - JavaScript heap out of memory,222
+symlink is - stateful?,223
+"When update to latest version ERROR : ""The installer has insufficient privileges to modify this file  ""C:\Program Files\nodejs\node_modules\npm\node_modules\abbrev\package.json""",224
+stream: `end` cannot throw ERR_STREAM_DESTROYED after `destroy`,225
+tty add color support for macterm and hyper,226
+lib/internal/freeze_intrinsics.js license confusion,227
+Event loop execution order changes based on code part that didn't executed,228
+Node fs.copyfileSync hangs when source and destination are identical,229
+src: allow --interpreted-frames-native-stack in NODE_OPTIONS,230
+assert: fix internal logic judgment,231
+"doc: reorganized ""Contributing to Node.js""",232
+inspector: allow whitelisting inspector domain,233
+"deps: v8, backport b901591",234
+"FATAL ERROR: node::inspector::Agent::ToggleAsyncHook Cannot toggle Inspector's AsyncHook, please report this.",235
+src: add error codes to errors thrown in C++,236
+Node 10.8.0 does not support `lookup` on `Agent`,237
+Calling disconnect causes processes spawned by cluster module to exit too early,238
+inspector: add way to force worker to wait inspector session detach,239
+Investigate flaky parallel/test-worker-process-cwd,240
+Expose a way to specify TLS version by node command line,241
+"build,cares,openssl,zlib: limit symbol exports",242
+path: fix win32.relative() for some Unicode paths,243
+Increase HTTP_MAX_HEADER_SIZE to 16kb,244
+path: fix unicode path problems in path.relative,245
+inspector: abort when accessing data from a closed session,246
+Add `timeout` and `killSignal` options to `child_process` `spawn()` and `fork()`,247
+Inspector segmentation fault,248
+node 12.1 and 12.2 causes cpu usage increase above 30%,249
+investigate flaky test-cpu-prof,250
+Update terminal environment variables to detect colors,251
+inspector: introduced --inspect-store option,252
+napi_create_threadsafe_function func should be optional,253
+second pass phantom callback leads to infinite recursion,254
+Remove --build-v8-with-gn configure option,255
+lib: fix readable state `awaitDrain` increase incorrectly in recursion,256
+Readable stream's awaitDrain increased incorrectly,257
+missing block coverage for functions,258
+Default http[2s] server timeout is problematic,259
+Create heapdump on out of memory,260
+Domains async_hook based implementation leaks active domain on resources maintained by internal pools,261
+console.time measuring lot of time the first time that is being executed,262
+JSON.stringify on process.nodeModules can result in an OOM when using custom serializer,263
+UTF Characters for relative path,264
+Better assertion message for C++ binding argument checks,265
+"cleanup: reduce the number of `#include ""env.h""` and `#include ""env-inl.h""` in the code base",266
+doc: add glossary.md,267
+"doc: fix explanation of package.json ""type"" field",268
+doc:  add missing `--trace` in man page,269
+src: use cgroups to get memory limits,270
+Please support loading node_modules from an archive,271
+assert: stricter object comparison,272
+Segfaults with dynamic imports and mocha,273
+`childProcess.killed` should be `true` after `process.kill(childProcess.pid)` is called,274
+Node does not completely uninstall itself on Windows,275
+modify the runtime stack size.,276
+"tools,build: use the python interpreter running gyp througout the whole build process",277
+doc: add the missing deprecated method 'tmpDir()',278
+Link issue with static library of nodejs,279
+Make it possible to forcibly RST a net.Socket,280
+docs: fs: stat.isDirectory: added clarification,281
+Nodejs 10.15.3 on Windows 10 - cannot find npm,282
+ES Modules does not work with namespaced library,283
+Discussion: private fields and util.inspect,284
+Syntax Highlighting license ,285
+libatomic for s390x,286
+Regression issue with keep alive connections,287
+[v8.x] deps: V8: backport d520ebb,288
+A flag for disabling specific warnings,289
+doc: outline that process.stdin emits multiple readable events,290
+timers: do less work in insert,291
+process.binding('spawn_sync') is required for spawn-wrap (and thus nyc) to work.,292
+REPL: add wildcard to autocompletion,293
+crypto: getCiphers() returns unsupported cipher,294
+lib: improve option shell on child_process,295
+Fix to #27211 - Refactor RealEnvStore methods to use libuv methods for env operations,296
+Proposal: PR links in documentation history,297
+buffer: throw on new Buffer,298
+build: add Travis job to check for dead URL links,299
+Node fatal error: ToggleAsyncHook Cannot toggle Inspector's AsyncHook,300
+Crash in wrap_js_stream.js during doClose,301
+Blockers for Clang support on all supported platforms,302
+vm.compileFunction is crashing the node process with unknown error,303
+security: zlib inflate methods might be vulnerable to zip bombs,304
+ build: move release targets to tools/build/Makefile.release.mk,305
+Building Node.js on Visual Studio 2019,306
+Node 11.9+ Exception on openssl digital envelope routines cipher parameter evp_lib.c,307
+Refactor RealEnvStore methods to use uv_os_getenv/setenv/unsetenv,308
+"build: ignore all the ""Debug"",""Release"" folders",309
+doc: several properties undocumented on child process,310
+Node Startup Improvement,311
+Node Installer Installs npm 4.4.1 Instead of 6.4.1,312
+stream: ensure state existed when getting property,313
+Debug build on Windows is failing,314
+Investigate flaky addons/dlopen-ping-pong/test-worker,315
+crypto: add OID constants for EVP_PKEY_ types,316
+async_hooks: add AsyncLocal class,317
+build: V8 gyp files fixes,318
+process: add libuvHandlesCount(),319
+async iterators/generators in stream.pipeline(),320
+os.networkInterfaces() returns wrong mac addresses again!,321
+Give write callback incase of piping,322
+Increase buffer pool size and streams high water marks,323
+Use the `/q` flag with `cmd.exe` in `child_process.spawn()`,324
+inspector: introduce inspector.SyncSession,325
+build: fixes and optimizations in gyp files,326
+Segfault on Node 10.x doesn't occur in 6.x,327
+readable.push always returning false after reaching highWaterMark for the first time,328
+"Can we report the node versions, in addition to the ABI version, on ABI mismatch?",329
+src: simplify Javascript code embedding,330
+Feature: Immutable Buffer `buffer.readonly()`,331
+Documented way to add certificates to existing SecureContext,332
+Userland access to `internalBinding` (at one's own risk),333
+buffer: stricter buffer from,334
+"http: HEAD response, no error if next msg starts with 'H'",335
+fs: improve mode and flags validation,336
+Add maxStringLength option for util.inspect,337
+errors in punycode.js: assign codes or leave them alone?,338
+doc: document the return value of process.send() and worker.send(),339
+Supported asymmetric key types,340
+meaning of the boolean return value of `send()` not documented,341
+stream: use `Math.floor()` instead of `parseInt()`,342
+http2: window size connection control,343
+doc: improve modules high-level pseudocode algorithm,344
+process.stdout/stderr.isTTY undefined in worker_thread,345
+lib: use freelist for WriteWrap instances,346
+WIP V8 API usage in Node.js,347
+Add TextEncoder.prototype.encodeInto,348
+dns: provide additional info for ENOTFOUND errors,349
+Add LTS changelog,350
+`node --inspect` and `node --inspect-brk` not being connected to by chrome,351
+/etc/localtime symlink handling,352
+"RFC: add a flag similar to --prof, but based on v8 CPU profiler",353
+SSL error queue not cleared before I/O,354
+worker.onmessage is not called,355
+Exposing KeyObject fields vs. native JWK support,356
+async_hooks: await triggers promiseResolve twice for Node 10 and 11,357
+tools: add clang-tidy rule in src,358
+http2: cannot negotiate ALPN besides http/1.1,359
+EPIPE thrown when calling process.stdin.end() in node 10.15.3 on Windows,360
+Backport of V8 CpuProfiler fixes/improvements,361
+executionAsyncId doesn't return expected value in context of process.on('unhandledRejection'),362
+VM: options.columnOffset has no effect on column number in stack trace output,363
+Track Environment fields in heap snapshot?,364
+JITless V8,365
+Pointer compression and Node modules,366
+"crypto hash, hmac and cipher ops could be 2x-3x faster for ""one-shot"" small buffers",367
+GCC warnings when compiling files in src,368
+build: make `partly_static` opt-out,369
+"build,tools: Python3 compatibility and refactoring",370
+src: add SecureContext.getCertificateObject method,371
+Should we add a glossary like chrome ?,372
+process: deprecate toStringTag assignment,373
+Remove public util use in lib/vm.js and lib/zlib.js,374
+[worker_threads] make JS new Error() copyable across threads,375
+Add extra backport open label,376
+Memory leak introduced in v10.15.3,377
+worker: allow specifying resource limits,378
+crypto: X25519 and X448 and ECDH,379
+tools: replace GYP with GYP3,380
+benchmark: replace deprecated cipher in cipher-stream.js,381
+flaky: parallel/test-async-hooks-http-parser-destroy.js,382
+Debug worker_threads,383
+Quadratic regex in readline.js,384
+buffer: always let indexOf look at odd indexes,385
+Investigate flaky parallel/test-tls-server-verify,386
+setTimeout Calling Callback Too Early,387
+[WIP] lib: tweak buffer.indexOf,388
+fs: allow int64 offset in fs.read/readSync/write/writeSync,389
+"dtrace,etw support levels",390
+fs.read offset and length can only be up to 0x7FFFFFFF (max int32 instead of uint32),391
+"benchmark: add ""byGroup"" config option",392
+perf_hooks: add ReqWrap latency monitoring,393
+http: create an option for setting a maximum size for uri parsing,394
+lib: reduce internal usage of public require('util'),395
+async-hooks: introduce async-storage API,396
+perf_hooks: add heap statistics monitoring,397
+Support for base64url format,398
+worker threads importScirpts and self support / 1:1 browser Worker functionality,399
+tls: additional root cert-specific verification,400
+Secure input for requesting passwords from user input.,401
+Old tags,402
+fs.createReadStream and fs.createWriteStream missing *Sync variants.,403
+buffer.indexOf is incorrect in utf16le encoding for odd byteOffset,404
+[RFC] crypto: replace createECDHKey with generate/importECDHKey,405
+Crash in Node v8.x at lib/_tls_legacy.js.onclienthello(),406
+Benchmark parameter group,407
+assertion error in _http_client.js,408
+Investigate flaky test-worker-prof,409
+investigate flaky test-stringbytes-external-exceed-max-by-1-hex on freebsd,410
+Flaky parallel/test-worker-exit-code,411
+AssertionError [ERR_ASSERTION]: false == true,412
+"`node::MakeCallback()`, `napi_make_callback()` requires recv to be an object / not empty",413
+Restrict process and Buffer globals to CommonJS,414
+domain: allow concurrent user-land impl,415
+shutdown ENOTCONN on TLS.Socket._final,416
+stream.pipeline destroys writable stream when error is occurred,417
+HTTP GET Request with a long URI produces a 400 Bad Request error (should be 414),418
+Discussion: Criteria for upgrading diagnostic reporting from experimental to stable,419
+"Add a guide on ""How do I become a Node.js committer"".",420
+test: improve test coverage in child_process,421
+Unable to detect any supported Visual Studio 2017 product,422
+Consistent environment variables,423
+http socket might get reset instead of normal close while handling timeout,424
+http server.headersTimeout keeps the socket open after timeout,425
+setTimeout callback is executed sooner than it should in docker on Mac OS,426
+Avoid small initial text for API docs on pages with wide tables,427
+TextDecoder with fatal=false throws when streaming invalid UTF-8,428
+docs: document how to land ICU floating patches,429
+ThreadSanitizer: data race at PlatformWorkerThread::trace_event_unique_atomic35,430
+repl: commands allowed only when not multiline,431
+[WIP]tools: simply eslint tasks,432
+PluralRules broken in node 10.15.1,433
+Sourceless vm.Script compilation/load,434
+Fully deprecate require('constants'),435
+Support ARM64 Windows desktop,436
+flaky: test-child-process-pipe-dataflow,437
+`readable` event not emitted after `net.Socket` reconnects,438
+Node 11.4.0+ fails to resolve index.js when combined with -r and --inspect-brk,439
+Significantly larger event loop latency & event loop usage in Node 10 vs Node 8,440
+http2 API documentation issues,441
+Memory growth with Node 10,442
+Coverage reports wrong hit counter,443
+Workers affected by V8 aborting on virtual allocation failure,444
+Frequent console.log() calls prevent error output on stack overflow,445
+fs: added fs.writev() which exposes syscalls writev(),446
+investigate flaky test-https-server-keep-alive-timeout,447
+Improve current workflow,448
+investigate flaky sequential/test-performance,449
+src: port --bash-completion to C++,450
+When adding a breakpoint on a promise line when the promise inside a class instance it hits after promise resolved,451
+investigate test/tick-processor/test-tick-processor-builtin failures,452
+Build failure on Windows caused by UTF-8 characters,453
+Problems with Visual Studio 2017,454
+build: find Python 3 or Python 2 in configure,455
+Request timeout if a single header exceeds the max-http-header-size limit,456
+Reuse of createHash initializations,457
+"EMFILE: too many open files, watch Nodejs 11.8",458
+update nodejs from 6.9.5 to 10.15.1 error on windows,459
+Node.js v10.15.0 segfault in BackgroundRunner → CancelableTask::Run → ConcurrentMarking::Run,460
+Nodejs from v8.9.0 to v8.15.0  segmationfault on macos 18.2.0 Darwin Kernel Version 18.2.0,461
+Timer objects no longer show up in process._getActiveHandles(),462
+"build,tools: refactor build config into config.json",463
+Flaky test: test-policy-integrity,464
+build: ongoing list of actions for Python 3 compatibility,465
+get event loop tick id somehow,466
+SIGSEGV handler causes infinite loop if signal raised from within,467
+build: PYTHON ?= python3,468
+Crypto to SubtleCrypo incompatible [RSA_OAEP Browser Public to Server encrypt],469
+process: remove unhandled rejection deprecation warning,470
+fs.readFile is slower in v10,471
+String.prototype.toLocaleLowerCase fails on German sz ligature,472
+Unhandled application error causes segmentation fault in OpenSSL internals,473
+Unable to use Path related commands? ; For Oddball Laptop Users Win10,474
+process: add exitWithException(),475
+Make windows stdio pipes async (?),476
+WIP src: print stack of Error object with --abort-on-uncaught-exception,477
+Possible Memory Leak N-API,478
+console: use synchronous write when the process is piped,479
+worker_threads: worker.postMessage does not get executed without exiting synchronous call stack,480
+docs: Dirent definition doesn't tell me anything useful about Dirent,481
+Pass a Promise to the `lookup` option in `socket.connect(...)`,482
+Create node/doc/guides/writing-docs.md,483
+path.resolve: clarify the example,484
+POC: src: add addon ABI declaration option,485
+Memory leak,486
+Investigate flaky `known_issues/test-vm-timeout-escape-queuemicrotask`,487
+Inconsistent error message when spreading null inside array,488
+UWP/Microsoft Store package,489
+"import http-parser ""Fix Content-Length with obsolete line folding"" ",490
+Windows installer hidden after installation finished,491
+error handler of same domain can be called several times when it throws,492
+meta: update release guide with notes for major releases,493
+child_process: child_process.spawn ENOMEM on Windows ,494
+repl: printing big strings results in OOM,495
+osx filesystem writes are not always guaranteed to match requested casing,496
+process: improve nextTick performance,497
+responses corresponding to requests queued by http agent are attached to incorrect domain,498
+BUILDING.md: how-to-install has become obscured,499
+reused http parser can be associated to incorrect domain,500
+Investigate flaky sequential/test-inspector-port-cluster on Windows CI,501
+net: allow reading data into a static buffer,502
+vm: Script importModuleDynamically memory leak,503
+ENOMEM with exec/spawn - child process tries to reserve as much mem as parent,504
+path: join refactor,505
+modules: significantly improve require performance,506
+Syntax error message sometimes highlights the wrong token for reserved words,507
+Test failing InspectorSocketServerTest.ServerCannotStart,508
+`process.features`: deprecate it or add more properties?,509
+NAPI: some napi_*_threadsafe_function naming/documentation issues,510
+EBADF error sometimes happened after close event,511
+TextDecoder should not output BOM,512
+Fail to load `request-promise-native` with --experimental-modules,513
+doc/api: extended the object mode section in the stream.md,514
+fs.watch() consistently claims a file in a similarly named directory also changed,515
+repl: treat tab as spaces while pasting,516
+mips build failure: problem linking big binary and possible solution using -gsplit-dwarf,517
+Tabs in the repl cause display issues,518
+Add `input` option to async child_process methods,519
+Negative zero broken on ≥ v10.4.0,520
+Using GitHub Lock App for closed issues/PRs on NodeJS core?,521
+"process,tty: allow reading/writing from duplex sockets : backport to node-8",522
+lib: worker fix workers isolation,523
+Investigate flaky parallel/test-https-localaddress,524
+"src, lib: use internal/options for indicating breakFirstLine",525
+Callbacks called twice,526
+" readable event,outputs are different between v9.11 and v10.14.2",527
+Intl: replace icutrim.py with ICU data slicer,528
+"Makefile dependency tree is incomplete, makefiles do not build only as necessary",529
+regression: child_process stdin pipe close event not emitted,530
+WhatWG URL provides no suitable replacement for `url.format()`,531
+Node.js 12 - V8 version roadmap,532
+Start node in inspect mode will cause CPU consumption 100%,533
+Startup time optimization - specifying location of node_modules,534
+Ecosystem Modules that will break in Node 12,535
+Unexpected RangeError [ERR_INVALID_OPT_VALUE] while reading from a HTTP download stream,536
+[v8.x] flaky sequential/test-http2-settings-flood,537
+Building manually on AIX,538
+http: test for timeout without callback,539
+Re-evaluate waiting on green CI,540
+Performance issue with Promise rejection chaining,541
+test: added test for lib/internal/util/inspector.js,542
+regression: data truncation with stream.writev in IPC channel,543
+Request for warning documentation,544
+http2: streams can emit 'close' before 'end' and/or 'finish',545
+Regression in idle socket handling,546
+buffer: up to 2x times faster copy of buffers,547
+Buffer.toString behavior change between v8 and v10,548
+On Windows lstatSync errors after unlinking a symlinked file,549
+openssl bug when using Node.js 10.x or Node.js 11.x but Node.js 8.x is fine,550
+Making node_process and part of bootstrapper.cc an internalBinding,551
+http server returns 400 status code for valid request on keepalive connection after an error was caught by a domain,552
+Experimental Features Strategy,553
+cli: make ^C print a JS stack trace,554
+test: more tests for PKCS#8 private keys,555
+src: allow adjusting trace events per file in cli,556
+http2 crash: double free or corruption (fasttop),557
+Dynamic Modules Development in Node.js,558
+Need change in the read me file,559
+"are the YAML ""added"" annotations ambiguous? and are they rewritten on backport?",560
+s/whatwg/web/ in file names?,561
+Expose a way to restrict openssl signature algorithms,562
+Could there be an equivalent of `createRequireFromPath` for imports?,563
+module: createRequireFromPath missed docs,564
+HTTP2 throwing SSL alert number 42 on Windows 7,565
+http/2 compat HEAD always finished,566
+"behaviour of Buffer.from(string[, encoding]) is not specified for invalid input",567
+doc: http module clarify header limits,568
+Support pausing the debugger on script load,569
+doc: Adding documentation on dynamic imports via the import() function,570
+Regression v10.x node_file.cc:1713: Assertion `(off) <= (buffer_length)' failed.,571
+Test /parallel/test-fs-stat-bigint fails 3 out of 100 times,572
+Does `autoDestroy` make sense for http2 streams?,573
+child_process: implement experimental promises api,574
+AIX - intermittent? -  known_issues/test-vm-timeout-escape-promise,575
+stream.pipeline swallowing errors when read stream is empty,576
+Dependency v8 is not Python 3 compatible,577
+flaky: parallel/test-timers-immediate-queue,578
+stream: adding new 'data' handler doesn't resume stream after removing 'readable' handler,579
+Feature request: Support create public key from components method?,580
+doc: updating vs cpp build tool installation steps in building,581
+test: update test case in test-net-internal.js,582
+Problem Building Node (had errors about multiply-defined symbols and such),583
+test: add a test to make sure the modules can be required independently,584
+flaky: parallel/test-https-foafssl,585
+test: use openssl.cnf if using shared openssl,586
+Run tests with OPENSSL_CONF set to embedded openssl.cnf,587
+doc: backticks rendering as-is in crypto docs,588
+http2: make compat finished match http/1,589
+http: compat head request should not start finished,590
+readline: add reverse search,591
+`multipleResolves` event should not be triggered when using `Promise.all()` or `Promise.race()`,592
+doc: make C++ core guidelines a reference,593
+doc: buffer.from will return internal pool buffer,594
+benchmark: try building the addons in napi benchmarks,595
+http2: add test for head request is not finished,596
+Fixing child_process module to check values passed strictly to the options object,597
+cli: preserve or add trailing slash to file arg,598
+repl: handling multiline history needs some case guards,599
+test: http[s] deprecated-URL coverage,600
+`node .` runs a different file on node 10 than 8,601
+test: http2 origin length ERR_HTTP2_ORIGIN_LENGTH,602
+investigate flaky known_issues/test-vm-timeout-escape-nexttick,603
+"discussion: put subsystem, team and label metadata in file(s) in this repo",604
+"Doc: Agent ctor options are not fully documented, such as `lookup`",605
+vm: add createCacheForFunction,606
+fs: do not emit open and read if stream destroyed,607
+Intl.DateTimeFormat doesn't respect the passed culture,608
+intl: Will Intl.Segmenter need full ICU in Node.js even for the 'en' locale?,609
+Node crashes when writing data on HTTP2 stream that meanwhile terminates,610
+Discussion: How should the Node executable + Node shared library be distributed?,611
+Deprecating _third_party_main,612
+doc: add link to VSCode config in testing,613
+gitignore files and folders created while running coverage for Node.js core,614
+"docs: When using the ""Edit on GitHub"" button references to the guides are not obvious",615
+src: add --completion-fish option,616
+flaky: parallel test-fs-readfile,617
+`server.keepAliveTimeout` is not applied to sockets that are never used.,618
+doc: clarify when `'listening'` event is emitted,619
+UDP/Datagram Sockets documentation,620
+readline: inform line event about separator used,621
+vm.compileFunction should return an object,622
+Tracking: openSSL with asm on arm64,623
+Free memory displayed instead of Available memory (not reality),624
+lib: refactor constant in querystring,625
+fs: refactor to not rely on write only permission for lchmod,626
+HeapProfiler.takeHeapSnapshot will cause Node.js crash,627
+why binding.WriteBuffers is not available from api ?,628
+Hashbang not resolving `--loader` relative to entry,629
+Create a flag to know when stream has reached it's last chunk from within _transform.,630
+lib: modify NativeModule to use compileFunction,631
+add duration argument to timeout.refresh(),632
+util inspect formatter implementer,633
+Non-unique V8 scriptUrl when using dynamic import in CJS,634
+async_hooks: promiseResolve hook not called for async functions with spread args,635
+src: add security warning when inspector is running on public network,636
+http: destroy timeout socket by Agent,637
+Include list of all subsystems/topics in README.md,638
+Promise resolution MTQ ordering problem,639
+"fs.lchmod opens file with O_WRONLY unnecessarily, fails on directories and non-writable files",640
+"fs: cannot interact with invalid UTF-16 filenames on Windows, even with Buffers",641
+doc: list the stability status of each API in one place?,642
+Tracking Issue: Legacy URL deprecation,643
+Breakpoints not working inside Chrome devtools since `v10.12.0` ,644
+remote debugger unable to convert path correctly in different operating system,645
+Assertion in parallel/test-trace-events-dynamic-enable from libuv,646
+Run code coverage for a single file,647
+Warn on potentially insecure inspector options (--inspect=0.0.0.0),648
+Investigate flaky parallel/test-repl-tab-complete (debug build),649
+Segmentation fault building 10.12.0,650
+deps: add support for interface broadcast addresses,651
+os.networkInterfaces() does not expose interface's broadcast address,652
+child_process.spawn() is unreliable on Promise.all() completion,653
+yocto build failed,654
+test: correct isReused parameter in test-http-parser,655
+Allow registering multiple uncaught exception capture callbacks,656
+crypto: use byteLength in timingSafeEqual,657
+fs: read/write streams don't emit `close` after `error`,658
+New Writable Event - Ended by pipe,659
+https.request timeout options doesn't work,660
+Buffer.toString('utf8') appears to use wtf-8,661
+N-API SharedArrayBuffer api,662
+N-API: Need SharedArrayBuffer api,663
+N-API: An api for embedding Node in applications,664
+Address HashWick,665
+Too many ECONNRESET errors after upgrading to 8.12.0 from (8.11.4),666
+flaky: test-http-end-throw-socket-handling,667
+flaky: test-net-connect-options-port,668
+[Tracking Issue] Web Platform Tests revamp/update automation,669
+Truncated error messages produced by WinapiErrnoException,670
+tls: Add PSK support,671
+"Almost guaranteed ECONNRESET on piped sockets if connecting to Node's HTTPS server which answers with ""connection: 'close'"" after setImmediate or setTimeout, on OSX",672
+Possible parsing error with destructuring assignment,673
+`'open'` can be emitted after `destroy`,674
+connection reset when using https server/client combi without keepalive,675
+APIs removed in V8 7.0 and native addons,676
+test: fix tick-processor tests and run them in CI,677
+test-util-internal is flaky cause of non ASCII characters,678
+Investigate flaky test-gc-http-client-onerror,679
+Feature request: Crypto APIs should optionally return bigints,680
+QUIC support,681
+[async_hooks] Wrong after callback in case of uncaughtException,682
+Threadpool monitoring / metrics,683
+Discussion: Criteria for upgrading worker_threads module from experimental to stable,684
+Installation problem with search path,685
+Add class inheritance/implements info to NodeJS JSON docs,686
+tls requires a subject even when altNames are defined,687
+Tracing agent should maybe support shutdown-on-signal,688
+repl: Support for eager evaluation,689
+inspector: add inspector.waitForConnection method,690
+src: fix vm enumerator callbacks,691
+lib: destructuring assignment `path` module in fs,692
+Add RunKit embeds to Node documentation [WIP],693
+"Potentially critical bug: Unexpected, reproducible calculation error",694
+Docs missing for http2Stream.id and the 'ready' event,695
+License agreement is missing,696
+querystring.stringify() could accept a Map without breaking existing support for objects,697
+"Question: What are the differences/limitations of ./configure --partially-static, --fully-static and default?",698
+assert.deepStrictEqual diff confusion,699
+Automate tooling updates,700
+[v10.x needs a backport] - trace_events: add trace category enabled tracking,701
+Web Locks API,702
+Include iowait and steal in os.cpus(),703
+An optional parameter that lets us delete folders that aren't empty directly,704
+WIP: Pluggable thread pool,705
+Investigate flaky test parallel/test-zlib-convenience-methods,706
+Upcoming V8 change: removal of sparse array iteration support,707
+src: add node::url::URL::href() method,708
+setUTCDate & setDate do not convert input to integer as expected by ES spec,709
+[WiP] buffer: runtime-deprecate buffer constructor in sync mode,710
+Align paths in traces,711
+WriteStream may get written to a different directory than intended,712
+Feature request: util: isDeprecated(),713
+toLocaleUpperCase() not working for Georgian locale ('ka'),714
+Change JSON.stringify behaviour on certain builtin objects,715
+Add testcases for all documented safeguards,716
+readline: processing \u2028 and \u2029,717
+net: allow typed arrays in .write(),718
+stream: allow typed arrays to be written and read,719
+dgram: allow typed arrays in .send(),720
+Domains created inside `uncaughtException` event handler don't allow catching errors thrown inside the `domain.run()`,721
+SQL Injection and Timing Attacks using TLS SNI and HTTP Host Header,722
+Async Hooks do not recognize execution contexts created when processing thenables,723
+Investigate flaky test-http2-large-file,724
+Segmentation fault of node 10.8.0 x64 on Fedora 27 when running from `PATH`,725
+running webpack under node version higher than v10.1 produces heavy cpu usage and a high number of Idle Wake Ups,726
+openssl_cipher_iv_length,727
+Inconsistent flag & environment variable documentation,728
+dns: support cares_search for resolution,729
+"ICU Toolset being compiled by cross compiler, not host compiler",730
+http.get method() ignores query params when passing an URL as first argument,731
+"fork method, args parameter cannot be null",732
+Multiple tests will fail on Windows.,733
+Buffer documentation on pooling might be misleading,734
+ process: initial impl of feature access control ,735
+Error: Invalid access to memory location.,736
+http: remove `pause()`/`resume()` from parser bindings,737
+Migration from process.binding ,738
+[Feature request] [Windows] Unable to run Node.js in safe mode,739
+[async_hooks] - A possible bug or requirement of clarity?  Perhaps another hook needed?,740
+Path.format() does not add a slash,741
+build: prevent C++ linker from overwriting executable,742
+doc: explaination about flagged feature etiquette needed,743
+doc: Change doc on fs.rename api w.r.t to windows behaviour,744
+test: flakiness in building addons with `make`,745
+Why don't we use jemalloc?,746
+Documentation on native addon filenames and `NODE_MODULE`,747
+Node hangs when running a stand-alone script with captured output,748
+fs.rename doesn't work as documented,749
+Processes created using spawn with a pipe have no /dev/stdin,750
+NodeJS native modules made difficult by distribution packages.,751
+cluster: forked children eagerly ignore/replace inspect port from cluster settings,752
+"node crashes with ""free(): invalid pointer"" when exiting",753
+"querystring.parse expands ""+"" always, regardless of the parser",754
+child_process - windowsHide not working with detached: true,755
+setInterval keeps drifting over time,756
+[Feature Request] Package.json Root / Base Directory,757
+Node.js windows installer not working,758
+[windows] [readline] [https] Closing input halts event loop,759
+Number.prototype.toLocaleString() on currencies,760
+Handle leak when all workers shut down and then restart,761
+Is there a good way to track how recently data was received from the remote end of an http2 session?,762
+Creating a branch of the Docs using RunKit,763
+"url.resolve bug with encoded characters like ""%61""",764
+Consistent end of stream handling,765
+icu build: use genccode -o on non-windows platforms,766
+Worker relative path resolution fails with nested folders,767
+Custom module loader for Workers,768
+Ability to replace current Node process with another,769
+doc: troubleshooting FAQ?,770
+Feature request: Buffer.readUint(BE|LE) with BigInt support,771
+Embedding: static nodejs variables are not set to default,772
+"configure --tag allows any string, but certain characters break npm",773
+"child_process spawn, execFile, etc. is tremendously slower at Windows and takes minutes",774
+Segmentation fault in 8.11.3 for async_hooks,775
+"Feature request: support a list of custom ""is host object"" symbols for serialization",776
+Crash with Node.js v10.5.0,777
+enabling pgo,778
+Breaking change in V8 for Error.prepareStackTrace,779
+new core modules go under a namespace,780
+Ninja build mode lacks install target?,781
+Promisify server.listen,782
+Replace the use of marked with remark for doc/json generation,783
+test: add test for error codes doc and impl,784
+async_hooks: add getActiveResources (prototype),785
+tls: fix inconsistent (hostname vs host),786
+Segfault / error while bootstrapping,787
+Investigate flaky async-hooks/test-statwatcher,788
+Build node with GN,789
+module: add cache of request and filename to optimize require perf,790
+"Path.join, argument[0] is coming back undefined when explicitly passed in",791
+make test: use after free: parallel/test-cli-node-options,792
+"Inconsistent behavior of path.basename(path, ext)",793
+buffer: runtime-deprecate Buffer constructor everywhere by default,794
+"Add variant of `fs.create{Read,Write}Stream` to `fs/promises`",795
+src: add options to control low-level hooks and disable exceptions,796
+readline with /dev/tty: echos and doesn't close,797
+"test,flake: async-hooks/test-fseventwrap flaky on Travis",798
+Is well-known symbol the recommended way to build addon?,799
+vm: Error.prepareStackTrace behaves inconsistently across versions,800
+"Why don't CJS modules support ""top level await""?",801
+fs.readFile possible memory leak,802
+Windows intermittent ? - parallel/test-timers-throw-reschedule,803
+Class name is missing from Call Stacks when debugging a regular typescript function,804
+timers: allow timers to be used as primitives,805
+Introduce `mime` module,806
+Allow linux users to turn off delayed ACK for TCP,807
+async_hooks.triggerAsyncId() don't return the expected value in context of the connection callback of net.Server,808
+"Implement ""eager evaluation"" in the REPL",809
+N-API: pass error from execute callback in napi_create_async_work to main loop,810
+http: OutgoingMessage is missing _writableState,811
+test: add test cases for setUnrefTimeout.,812
+Unable to share ticketKeys in secureContext,813
+test: test-async-wrap-pop-id-during-load failure on mac,814
+pipeline missing { end: false },815
+make http test suite run http2 compat,816
+doc: document readline keybindings,817
+doc: add doc for tty writes ( readline.js / REPL ),818
+http perfomance regression in Node 8.10 and 8.11.,819
+won't link on OS X with --enable-static,820
+flaky: `parallel/test-http2-*` on Windows,821
+Stream pipe documentation is confusing,822
+Inconsistency between production version v10.0.0 and GitHub code (readable-stream),823
+Questionable internal casing of property name `process.env.Path`,824
+Clarify util.types.isExternal,825
+await import() doesn't work in REPL even with --experimental-repl-await,826
+"""Just My Code"" for stack traces?",827
+NODE_EXTRA_CA_CERTS cannot be set in code or relative,828
+Terminate process on unhandled promise rejection,829
+REPL on Windows doesn't display console cursor after moving,830
+BSD-x86 config missing after OpenSSL 1.1.0h import,831
+finished utility vs 'close',832
+https?.Server.keepAliveTimeout introduced boundary condition that results in client-side socket hang-ups,833
+Documentation for Buffer#includes is not accurate,834
+napi_get_uv_event_loop is not paltform neutral:),835
+http: client should not emit 'error' after 'aborted' and/or 'abort',836
+streams: event clarification and improvements,837
+http: ignore socket errors after req.abort,838
+process.release.headersUrl: distributors might want to provide an absolute file url,839
+vm module should expose V8::ScriptCompiler::CreateCodeCache,840
+build: .msi installer starts too long on Windows when Node.js was already installed,841
+Flexible stdios for IPC,842
+build: /latest/ download folder for nightly and v8-canary branches,843
+Missing http2 error handling,844
+add HPE_INVALID_METHOD to documentation,845
+TLS ClientCertEngine option does not invoke engine_load_ssl_client_cert interface in engine.so,846
+Math.pow gives wrong value on windows,847
+Accessing stdin with file descriptor 0 on Windows causes exception if there's no input / if stdin is closed,848
+"Missing useful debug information for Import ""MODULE_NOT_FOUND"" error",849
+Missing useful debug information for Dynamic Import errors,850
+net: Don't unlink unix socket on server.close(),851
+Support building with win-clang,852
+dynamic import can't be used in the REPL,853
+child_process: fix channel disconnect logic,854
+Files get truncated during bootstrapping,855
+"win, cluster: no callback called after write",856
+child_process: 'close' not emitted after .disconnect() in parent process,857
+Implement window.fetch into core,858
+http: setEncoding error for incoming socket connections,859
+Adding Websocket support to core,860
+ES module loading inconsistent with browser while handling `undefined` exceptions,861
+inspector: breakpoints and letter case in script path argument,862
+child_process stdout being truncated,863
+Building with full-icu by default,864
+feature request - listen for foreign/alien/non-child process change/exit,865
+Process V8 profiler output not working (new v8.10.0),866
+Questions/clarifications about vm context behavior,867
+Expose internal statValues in a consumer friendly way.,868
+[Tracking] loop/threadpool stats from libuv,869
+Merge streams handling code for http2 streams & net.Socket,870
+Error while running coverage,871
+node --prof-process is broken,872
+Deprecating the process._startProfilerIdleNotifier & process._stopProfilerIdleNotifier methods,873
+Getting warnings in console on fresh build,874
+repl: no RegExp side effects,875
+crypto.alloc() for encryption key memory management,876
+Should internal modules be affected by monkey-patching?,877
+Debuggers cannot break into certain looping node processes,878
+Segfault when trying to close the inspector from an active session,879
+build: investigate jumbo builds,880
+listening to sigint don't exit nicely,881
+Not fully linked vm.Module throws errors from C++ when instantiated,882
+Investigate non-Latin-1 build file path on Windows,883
+Piping a sync or process.nextTick'ed stream to an HTTP res prevents events from firing,884
+ReadableStream emits no events in certain character decoding case,885
+Using node with process.stdin inside spawned shell,886
+flaky test-debugger-debug-brk,887
+"require("".\\"") doesn't resolve index.js on Windows",888
+RFC: Per Package Loader Hooks,889
+Add an entry to the module loading paths dynamically,890
+util.isDeepStrictEqual would be better to return false to compare WeakMap/WeakSet,891
+ABI compatibility tool,892
+Fatal error when attempting to (wrongly) set incoming packet encoding,893
+[Tracking] Converting C++ errors to use internal/errors,894
+tracing: etw/perf/lttng/etc multi-isolate support,895
+Feature request: add `preserveSymlinks` option to `require.resolve()`,896
+build: shared library should have noexecstack set,897
+parallel/test-fs-utimes y2k38 test fails on mips(el),898
+path.dirname docs don't cover windows path edge cases,899
+No DNS Search Domain support in C-Ares calls,900
+Inconsistent behavior with fs module accross platforms,901
+enhancement: provide list of allowed flags of current executable,902
+REPL Await invalidates `const`,903
+Use %TypedArray%.prototype.subarray for Buffer.prototype.slice,904
+doc: how to use advanced features of `configure` on Windows,905
+Debugger crashes with assertion failure while using Chrome DevTools and remote debug,906
+Make embedding + V8 inspector work again,907
+domain migration to async_hooks,908
+RFC: speeding up Node.js startup using V8 snapshot,909
+host vs hostname inconsistency,910
+"When Node addon creates a new isolate, use it to execute JS code and let it triggers GC, it will crash",911
+Inconsistent error codes across platforms when writing to read-only (444) files,912
+IPC with fd>2 doesn't work,913
+Accidentally writing garbage to the IPC channel blows up parent in debug build,914
+"Cannot find a module with more than 2 dots prefix, ex require('..my-module')",915
+Implement createObjectURL/Blob from File API,916
+Performance regression in v6 and v8 compared to v4,917
+Moving from domains to async_hooks: plans for addressing common resource pools,918
+process.mainModule is undefined with --experimental-modules,919
+dgram: add source-specific multicast support,920
+Handing spawn() stdio as socket wont duplex properly,921
+http: deal with the lack of http proxy support in node.js core.,922
+Working build script for Android ARM Node 7.x or 8.x shared library,923
+vm.runInThisContext is bound to the top context,924
+Tracking Issue: DNS features requiring c-ares support,925
+errors.js module,926
+Distrust Symantec root certs,927
+test/dgram: Add support for IPv6 link local scope IDs in received UDP datagrams,928
+doc: better document `--shared` build,929
+HttpServerResponse.setDefaultEncoding(),930
+DNS server caching breaks changing networks in runtime,931
+Child-Process: file-descriptor auto-closes when it shouldn't without triggering close events.,932
+"path.posix.resolve, path.posix.relative return wrong path on Windows",933
+Windows installer: Per user install (feature request),934
+Including windows-1252 conversion in small-icu,935
+path.posix.relative returns different results for *nix and Windows versions of node,936
+"Discussion of implementing the Encoding Standard with ICU, and associated web platform tests",937
+vcbuild does not always generate field <TargetMachine> in project files.,938
+"When using pipes other than stdin, stdout, stderr for streaming data into a child process, ENOTCONN error is thrown",939
+make and amd64,940
+`.errno` field of errors from `child_process.execSync` is in string form instead of numeric.,941
+Relative URLs in WHATWG URL API,942
+readline: prompt opt-out behavior,943
+V8 API: convert Local<Array> into a list of Local<Value>,944
+"build,windows: solve build file disparity",945
+Missing response for certain POST requests,946
+build: refactor vcbuild.bat,947
+build: make build faster (at least on Windows),948
+Child process inheriting all stdio being SIGKILL-ed messes up terminal,949
+Node.js' internal scripts should be hidden in the inspector.,950
+node --inspect --debug-brk should break before the script even executes,951
+tls requires a subject even when altNames are defined,952
+Check cwd before spawning child process,953
+require in module.js problem with paths ,954
+worker.send stripping Map and replacing with {},955
+'end' event not called on connected socket wrapped with tls,956
+What will Domain be replaced with?,957
+child_process: fork does not accept null or undefined args array,958
+tls: secureConnect event will not be emitted if TLSSocket is created via constructor instead of tls.connect,959
+"Feature proposal: buffer.convert(value[, fromEnc], toEnc)",960
+Poll phase documentation,961
+HTTPParser inhibits garbage collection on keep-alive connections,962
+Detailed report for async_wrap in `process.memoryUsage()`,963
+Debugger doesn't work for processes which fork other processes,964
+Build fails when the path to the build root is too long,965
+ENOENT thrown when trying to create a file with an invalid filename,966
+Windows Container: fs.realpathSync() is broken on shared volumes,967
+zlib deflate results in a memory leak,968
+doc: guide/topic on how to use streams,969
+"Buffer.from(str, encoding) silently ignores decoding errors",970
+help() or similar for the REPL,971
+http.ServerResponse.writeHead() can be called multiple times for a single response,972
+Hotpatching modules leaks memory,973
+Should Node.js standard library throw custom Error subclasses?,974
+tls: misparsed URI subject alternative name?,975
+TCP Fast Open,976
+"Feature request: Inform the ""line"" event on a Readline interface of the type of end-of-line input",977
+Stop the installer deleting my symlink for AppData\Roaming\npm,978
+TCP_DEFER_ACCEPT option for http server ?,979
+api to get arm architecture of the binary as in the download page...,980
+stdio buffered writes (chunked) issues & process.exit() truncation,981
+stdout/stderr buffering considerations,982
+TCP socket emitted 'end' event after 'error' event,983
+stream: socket.setEncoding(null) to receive binary Buffers rather than strings has no effect,984
+how to include v8dbg_ symbols in the windows build,985
+Losing keystrokes when using tty.ReadStream() over process.stdin,986
+"HTTP Server request.setTimeout(n, cb) does sometimes call socket.destroy(), contradicting documentation",987
+No ETW events for function calls,988
+Promises allow vm.runInContext timeout to be escaped,989
+fs.utimes does not change birthtime on Windows,990
+fs: expose scatter/gather syscalls writev() and readv(),991
+Improve Path.parse / Path.format combo,992
+Accept ArrayBuffer (and typed array/data view?) anywhere Buffer is allowed in the API,993
+`Buffer` and `ArrayBuffer`-based objects trigger mark-sweeps instead of scavenges,994
+vm: references to context inside objects are not === the original context,995
+Chunked stdout/stderr drops writes if terminated early.,996
+make crypto functions execute in the threadpool asynchronously,997
+streaming / iterative fs.readdir,998
+`os.networkInterfaces` does not list all interfaces. ,999
+Cleanup `_writableState` and `_readableState` access across codebase,1000
