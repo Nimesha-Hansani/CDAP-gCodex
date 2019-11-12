@@ -204,9 +204,3 @@ def CalculateComprehension(BranchName,CommitDate,CommitTime,FileExtension,FilePa
                                  ]
                
                )
-
-         
-
-    
-   
-        

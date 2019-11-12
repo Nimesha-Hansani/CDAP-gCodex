@@ -44,11 +44,5 @@ def returnHalsteaddata():
 def returnComprdata():
 
     dataList =dumps(Compr.find())
-    print(dataList)
+   
     return dataList
-
-
-
-
-
-

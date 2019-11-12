@@ -139,4 +139,3 @@ def forcasting(repo):
    
 
     return data
-

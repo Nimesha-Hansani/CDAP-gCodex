@@ -111,6 +111,3 @@ def CalculateLinesofCode(BranchName,CommitDate,CommitTime,FileExtension,FilePath
                                  ]
                
                )
-    
-
-       

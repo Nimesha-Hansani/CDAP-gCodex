@@ -9,6 +9,7 @@ import dbfunctions
 import Prediction
 from pymongo import MongoClient
 import pymongo
+import commited
 
 
 app = Flask(__name__)
@@ -117,12 +118,6 @@ def readContents():
             locdata=dbfunctions.returnLOCdata()
             return locdata
 
-
-             
-              
-    
-        
-
     except Exception as e:
         
         print(e.status)
@@ -156,6 +151,7 @@ def comprehension():
     
      
         datalist=dbfunctions.returnComprdata()
+        print(datalist)
         return datalist
         
 
@@ -184,9 +180,34 @@ def forcasting():
         return jsonify(success = False)
 
 
+@app.route('/users/defects',methods=['GET'])  
+def defects():
+    try:
+        
+        repo = request.args.get('repo')
+        commits =commited.topCommitters(UNM,PSW,repo)
+
+        commited.issueCloud(UNM,PSW,repo)
+        status = commited.defectstatus()
+
+
+        data = json.dumps({'commit': commits, 'status': status})
+
+        return data
+       
+        # return jsonify(success = False)
+
+
+    except Exception as e:
+        print(e)
+        return jsonify(success = False)
+
+
+
+
 
 
        
 if __name__ == "__main__":
-    app.run(host='192.168.8.105',port=5000)
+    app.run(host='192.168.8.100',port=5000)
 #     app.run()

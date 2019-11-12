@@ -165,4 +165,3 @@ def CalculateHalstead(BranchName,CommitDate,CommitTime,FileExtension,FilePath,Ra
                )
 
        
- 
