@@ -13,6 +13,8 @@ app = Flask(__name__)
 g = None
 UNM = None
 PSW = None 
+
+# ReadRepoCompr.TraverseCompr("nimeshaamarasingha@gmail.com","19950525hansani","Nimesha-Hansani/TestRepo-CDAP")
 @app.route('/users/login',methods=['POST'])
 def login():
     result = ''
@@ -45,7 +47,7 @@ def getUserRepos():
     user= g.get_user()
     List =[]
 
-    #meh loop eken return wena hama value ekakm ara user project wl enne oni
+    
     for repo in repos:
         # This should be the out put    
         List.append(repo.full_name) 
@@ -93,6 +95,7 @@ def readContents():
         
         print("Done")
         data = dbfunctions.returnLOCdata()
+        print(data)
         return data
 
 
@@ -120,45 +123,48 @@ def halstead():
     except Exception as e:
         
         print(e)
+        return jsonify(success = False)
 
-
-@app.route('/users/comprehension',methods=['GET'])  
+@app.route('/users/comprehension',methods=['GET'])   
 def comprehension():
-    
+    repo = request.args.get('repo')
+    print(repo)
     try:
-        repo = request.args.get('repo')
-        print("comprehension "+repo)
+    
         dbfunctions.deleteCompr()
         ReadRepoCompr.TraverseCompr(UNM,PSW,repo)
-        return jsonify(success = True)
-
+        datalist=dbfunctions.returnComprdata()
+        return datalist
 
 
     except Exception as e:
         
-        print(e)
+        print(e.status)
+
         return jsonify(success = False)
+
+
+
 
 @app.route('/users/forcasting',methods=['GET'])  
 def forcasting():
     try:
         
         repo = request.args.get('repo')
-        print(repo)
-        Prediction.forcastingComprehension(repo)
-
-        
-        return jsonify(success = True)
+        data =Prediction.forcasting(repo)
+       
+        return data 
+        # return jsonify(success = False)
 
 
     except Exception as e:
         print(e)
         return jsonify(success = False)
 
-    
+
 
 
        
 if __name__ == "__main__":
-    app.run(host='192.168.8.107',port=5000)
-    #  app.run()
+    app.run(host='192.168.8.105',port=5000)
+#     app.run()

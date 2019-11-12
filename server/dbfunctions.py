@@ -29,27 +29,24 @@ def deleteLinesofCode():
 
     return None
 
-def returnHalsteaddata():
-    
-    dataList =dumps(Halstead.find())
-    print(dataList)
-    return dataList
-
-
-
-
 #Return Lines of Code Data
 def returnLOCdata():
-    
-    
     dataList =dumps(LOC.find())
-    print(dataList)
+    # print(dataList)
     return dataList
+    
 def returnHalsteaddata():
     
     dataList =dumps(Halstead.find())
     print(dataList)
     return dataList
+
+def returnComprdata():
+
+    dataList =dumps(Compr.find())
+    print(dataList)
+    return dataList
+
 
 
 

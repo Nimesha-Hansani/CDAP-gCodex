@@ -144,11 +144,11 @@ def CalculateComprehensionMetricValue(RawPath):
     
 def CalculateComprehension(BranchName,CommitDate,CommitTime,FileExtension,FilePath,RawPath,Repo):
     
-    
+  
    if (CommitDate in DateList) and (CommitTime in TimeList):
 
         AttrList = CalculateComprehensionMetricValue(RawPath)
-
+        print(AttrList)
         mycol.update_many({"Repository":Repo,
                   "Branches":{'$elemMatch':{
                    "Branch":BranchName ,"Commits.Commit Date":CommitDate,"Commits.Commit Time":CommitTime}}},
@@ -174,7 +174,7 @@ def CalculateComprehension(BranchName,CommitDate,CommitTime,FileExtension,FilePa
 
         DateList.append(CommitDate)
         TimeList.append(CommitTime)
-        print("Commit Date" + CommitDate)
+        
         mycol.update_many({"Repository":Repo,
                           "Branches":{'$elemMatch':{"Branch":BranchName}}},
                           {'$push':{"Branches.$.Commits":{

@@ -7,7 +7,7 @@ import Home from './pages/home.js';
 import About from './pages/about.js';
 import UserMenu from './pages/UserMenu.js';
 import Dashboard from './pages/Dashboard.js'
-import Sitepage from './pages/Sitepage.js'
+import Sitepage from './pages/Sitepage.js';
 
 import './bootstrap.css';
 import {BrowserRouter as Router, Route} from 'react-router-dom'

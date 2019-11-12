@@ -1,6 +1,6 @@
 import axios from 'axios';
 import {USER_LOGIN, ITEMS_LOADING, SEARCH_ITEMS, SEARCH_LOADING, ANALYZE_ITEMS, ANALYZE_LOADING,
-    COMREHENSION_ITEMS, COMREHENSION_LOADING} from './types';
+    COMREHENSION_ITEMS, COMREHENSION_LOADING, COMPLEXITY_ITEMS, COMPLEXITY_LOADING, PREDICTION_ITEMS, PREDICTION_LOADING} from './types';
 
 
 export const login = user => {
@@ -45,7 +45,7 @@ export const searching = (type, keyword) => dispatch => {
 };
 
 
-
+//repo structure
 export const analyzing = (repo_name) => async dispatch => {
     dispatch(setAnalyzeLoading());
     return await axios
@@ -57,7 +57,7 @@ export const analyzing = (repo_name) => async dispatch => {
 };
 
 
-
+//comprehension
 export const comprehension = (repo_name) => async dispatch => {
     dispatch(comprehensionLoading());
     return await axios
@@ -69,8 +69,29 @@ export const comprehension = (repo_name) => async dispatch => {
 };
 
 
+//complexity
+
+export const halsted = (repo_name) => async dispatch => {
+    dispatch(complexityLoading());
+    return await axios
+    .get('users/halstead', {params: {repo: repo_name}})
+    .then(res => dispatch({
+        type: COMPLEXITY_ITEMS,
+        payload: res.data
+    }))
+};
 
 
+// prediction
+export const prediction = (repo_name) => async dispatch => {
+    dispatch(predictionLoading());
+    return await axios
+    .get('users/forcasting', {params: {repo: repo_name}})
+    .then(res => dispatch({
+        type: PREDICTION_ITEMS,
+        payload: res.data
+    }))
+};
 
 
 
@@ -97,5 +118,19 @@ export const setAnalyzeLoading = () => {
 export const comprehensionLoading = () => {
     return{
         type: COMREHENSION_LOADING
+    }
+}
+
+
+export const complexityLoading = () => {
+    return{
+        type: COMPLEXITY_LOADING
+    }
+}
+
+
+export const predictionLoading = () => {
+    return{
+        type: PREDICTION_LOADING
     }
 }

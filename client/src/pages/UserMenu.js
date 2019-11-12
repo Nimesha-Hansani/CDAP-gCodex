@@ -57,7 +57,7 @@ class UserMenu extends Component {
     ls.set('repoName', event.target.value);
 
     this.props.analyzing(event.target.value).then(res => {
-      console.log(this.props.analyze.analyze[0]);
+     // console.log(this.props.analyze.analyze[0]);
     })
  
   }
@@ -121,7 +121,6 @@ class UserMenu extends Component {
               </Jumbotron>:
               <AnalyzeMenu/>}
               
-
             </Col>
             
             <Col xs="6" sm="3">

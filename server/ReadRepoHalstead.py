@@ -14,6 +14,8 @@ import sys
 import os, os.path
 import Halstead
 
+
+
 #DB Connection to the LinesofCode value collection
 myclient = MongoClient('localhost',27017)
 mydb = myclient["gCodexDB"]
@@ -48,7 +50,7 @@ def TraverseHalstead(username ,password,repo):
 
     g = Github(username, password)
     repository=g.get_repo(repo)
-    # 
+    
     mycol.insert_one({"Repository":repo})
     user =g.get_user()
     branches=repository.get_branches()

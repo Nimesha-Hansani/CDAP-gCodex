@@ -76,7 +76,7 @@ def TraverseCompr(username ,password,repo):
             Date = TimeStampStr.split(' ')
             commitKey = com.sha
             tree=repository.get_git_tree(com.sha).tree
-
+            # print(com)
             for tr in tree:
 
                 try:
@@ -88,40 +88,42 @@ def TraverseCompr(username ,password,repo):
                         while len(treeContent) > 0:
                             
                             file_content=treeContent.pop(0)
+                            
 
-    #                           if file_content.type =="dir":
-    #                                 treeContent.extend(repository.get_contents(file_content.path))
+                            if file_content.type =="dir":
+                                treeContent.extend(repository.get_contents(file_content.path))
 
-    #                           else:
-    #                                 # print(file_content.path)
-    #                                 rawPath=Avoid_Files(file_content.path,repoName,baseUrl,commitKey)
+                            else:
+                                
+                                rawPath=Avoid_Files(file_content.path,repoName,baseUrl,commitKey)
 
-    #                                 if(rawPath != None):
+                                if(rawPath != None):
                                            
-    #                                        r = requests.get(rawPath)
+                                    r = requests.get(rawPath)
                                
-    #                                        ExtFileName = rawPath.split('/')
-    #                                        File_Extension =(ExtFileName[len(ExtFileName)-1]).split('.')
-                               
-    #                                        Comprehension.CalculateComprehension(Branch,Date[0],Date[1],File_Extension[1],file_content.path,rawPath,repository.full_name)
+                                    ExtFileName = rawPath.split('/')
+                                    File_Extension =(ExtFileName[len(ExtFileName)-1]).split('.')
+                                    Comprehension.CalculateComprehension(Branch,Date[0],Date[1],File_Extension[1],file_content.path,rawPath,repository.full_name)
 
-    #                 elif (tr.type == "blob"):
+                    elif (tr.type == "blob"):
                        
-    #                     rawPath=Avoid_Files(tr.path,repoName,baseUrl,commitKey)
+                        rawPath=Avoid_Files(tr.path,repoName,baseUrl,commitKey)
+                        
 
-    #                     if(rawPath != None):
-    #                                     #    print(rawPath)
-    #                                        r = requests.get(rawPath)
+                        if(rawPath != None):
+    
+                           r = requests.get(rawPath)
                                
-    #                                        ExtFileName = rawPath.split('/')
-    #                                        File_Extension =(ExtFileName[len(ExtFileName)-1]).split('.')
+                           ExtFileName = rawPath.split('/')
+                           File_Extension =(ExtFileName[len(ExtFileName)-1]).split('.')
+                           
                                
-    #                                        Comprehension.CalculateComprehension(Branch,Date[0],Date[1],File_Extension[1],tr.path,rawPath,repository.full_name)
+                           Comprehension.CalculateComprehension(Branch,Date[0],Date[1],File_Extension[1],tr.path,rawPath,repository.full_name)
                         
                   
-    #                 else:
+                    else:
 
-    #                     pass
+                         pass
 
 
                 except:

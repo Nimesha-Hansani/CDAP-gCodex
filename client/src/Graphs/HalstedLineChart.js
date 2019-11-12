@@ -6,7 +6,7 @@ import { ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem, Row } from 
 import {connect} from 'react-redux';
 
 
-class CognativeLine extends Component {
+class HalstedLineChart extends Component {
     state = {
         dropdownOpen: false,
         itemName: '',
@@ -17,7 +17,7 @@ class CognativeLine extends Component {
         Vocabulary: [],
         Effort: [],
         ProgramDifficulty: [],
-        data : this.props.comp.data[0]
+        data : this.props.complex.data
     }
 
 
@@ -26,38 +26,38 @@ class CognativeLine extends Component {
     }
 
     drawLineChart = (e) =>{
-        // this.setState({itemName: e.target.value});
+        this.setState({itemName: e.target.value});
 
-        // var type = this.state.cont.filter(function (t) {
-        //     return t.Folderpath === e.target.value;
-        //   });
+        var type = this.state.cont.filter(function (t) {
+            return t.Folderpath === e.target.value;
+          });
 
-        //   console.log(type);
+          console.log(type);
 
 
-        //   var x = type.map(function(file){
-        //     return file.date;
-        //   });
+          var x = type.map(function(file){
+            return file.date;
+          });
 
-        //   var pl = type.map(function(file) {
-        //       return file.ProgramLength;
-        //   })
+          var pl = type.map(function(file) {
+              return file.ProgramLength;
+          })
 
-        //   var voc = type.map(function(file) {
-        //     return file.Vocabulary;
-        // })
+          var voc = type.map(function(file) {
+            return file.Vocabulary;
+        })
 
-        // var effort = type.map(function(file) {
-        //         return file.Effort;
-        // })
+        var effort = type.map(function(file) {
+                return file.Effort;
+        })
 
-        // var pd = type.map(function(file) {
-        //     return file.ProgramDifficulty;
-        // })
+        var pd = type.map(function(file) {
+            return file.ProgramDifficulty;
+        })
 
         
 
-        // this.setState({x_axis: x, ProgramLength: pl, Vocabulary: voc, Effort:effort, ProgramDifficulty:pd })
+        this.setState({x_axis: x, ProgramLength: pl, Vocabulary: voc, Effort:effort, ProgramDifficulty:pd })
 
 
     }
@@ -65,44 +65,44 @@ class CognativeLine extends Component {
 
 
     componentDidMount = () =>{
-      console.log(this.props.comp.data[0])
-            // const branches = this.props.complex.data[0].Branches;
-            // let cont = [];
-            // let drop = [];
 
-            // branches.forEach(bran => {
-            //     var bname = bran.Branch;
-            //     bran.Commits.forEach(commit => {
-            //         var da = commit["Commit Date"];
-            //         commit.Contents.forEach(content => {
+            const branches = this.props.complex.data[0].Branches;
+            let cont = [];
+            let drop = [];
 
-            //             cont.push({
-            //                 ProgramLength: content["Program Length"],
-            //                 Vocabulary: content.Vocabulary,
-            //                 ProgramDifficulty: content["Program Difficulty"],
-            //                 Effort: content["Program Effort"],
-            //                 Folderpath: content["Folder Path"],
-            //                 date: da
-            //             })
+            branches.forEach(bran => {
+                var bname = bran.Branch;
+                bran.Commits.forEach(commit => {
+                    var da = commit["Commit Date"];
+                    commit.Contents.forEach(content => {
 
-
-
-            //         });
-
-            //         commit.Contents.forEach(content => {
-            //             const foldername = content["Folder Path"]
-            //             if (drop.indexOf(foldername) == -1) {
-
-            //                 drop.push(foldername);
-            //             }
+                        cont.push({
+                            ProgramLength: content["Program Length"],
+                            Vocabulary: content.Vocabulary,
+                            ProgramDifficulty: content["Program Difficulty"],
+                            Effort: content["Program Effort"],
+                            Folderpath: content["Folder Path"],
+                            date: da
+                        })
 
 
-            //         });
 
-            //     });
-            // });
+                    });
 
-            // this.setState({drop: drop, itemName: drop[0], cont: cont});
+                    commit.Contents.forEach(content => {
+                        const foldername = content["Folder Path"]
+                        if (drop.indexOf(foldername) == -1) {
+
+                            drop.push(foldername);
+                        }
+
+
+                    });
+
+                });
+            });
+
+            this.setState({drop: drop, itemName: drop[0], cont: cont});
 
     }
 
@@ -112,8 +112,7 @@ class CognativeLine extends Component {
     render() {
         return (
             <div>
-              <h2>comprehension</h2>
-                {/* <Row style={{Right: '10px', textAlign:'center'}}>
+                <Row style={{Right: '10px', textAlign:'center'}}>
                  <h3 style={{marginRight: '20px'}}>Halsted Complexity</h3>
 
                  <ButtonDropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
@@ -175,7 +174,7 @@ class CognativeLine extends Component {
 
                  ]}
                 
-                /> */}
+                />
 
 
             </div>
@@ -184,15 +183,15 @@ class CognativeLine extends Component {
 }
 
 
-CognativeLine.propTypes = {
-    comp: PropTypes.object.isRequired
+HalstedLineChart.propTypes = {
+    complex: PropTypes.object.isRequired
   }
   
   
   
   const mapStateToProps = state => ({
-    comp: state.complex
+    complex: state.complex
   });
   
 
-export default connect(mapStateToProps)(CognativeLine);
+export default connect(mapStateToProps)(HalstedLineChart);
